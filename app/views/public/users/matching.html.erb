@@ -1,1 +1,18 @@
-<h1>user/matching</h1>
+<div class="text-center">
+  <%= image_tag @user.get_profile_image, size:"100x100" %>
+</div>
+<div class="text-center" id="user-description">
+  <%= @user.nickname %>
+  <% if user_signed_in? %>
+    <div id="follow_form">
+      <% if current_user.following?(@user) %>
+        <div class="btn btn-default" id="liked">いいね済</div>
+      <% else %>
+        <%= render 'follow', {relationship: @relationship} %>
+      <% end %>
+    </div>
+  <% end %>
+  <br>
+    <%= @user.introduction %>
+  </br>
+</div>

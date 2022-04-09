@@ -22,6 +22,20 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
+  def matching
+    @user = User.find(params[:id])
+    @relationship = Relationship.new
+  end
+
+  def matchings
+    @users = current_user.matchers
+  end
+
+  def seach
+    @activity_points = ActivityPoint.all
+
+  end
+
   def unsubscribe #退会確認画面表示
   end
 

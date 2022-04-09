@@ -1,0 +1,31 @@
+<!--< render 'partial/navbar' %>-->
+<div class="container">
+  <div class="col-md-3">
+    <!--< render 'partial/verticalnavbar' %>-->
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="text-center">
+          <span style="font-size:18px;">ユーザー一覧</span>
+        </div>
+      </div>
+      <% @users.each do |user| %>
+        <div class="col-sm-4 col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h1 class="panel-title">
+                <%= link_to "#{user.email}",  user_path(user) %>
+              </h1>
+            </div>
+            <div class="panel-body"></div>
+            <div class="thumbnail">
+              <%= image_tag user.get_profile_image, size:"100x100" %>
+            </div>
+            <div class="panel-footer"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

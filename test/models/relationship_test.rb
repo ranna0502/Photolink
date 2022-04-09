@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Public::MatchingsControllerTest < ActionDispatch::IntegrationTest
+class RelationshipTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

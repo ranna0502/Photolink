@@ -13,19 +13,21 @@ end
 #エンドユーザー側ルーティング
 scope module: :public do
 
-  get 'matchings/seach' => 'matchings#seach'
-
-  resources :matchings, only: [:index]
-  resources :reactions, only: [:create]
+  resources :relationships, only: [:create]
   resources :chat_rooms, only: [:create, :show]
   resources :notifications, only: [:index]
   resources :activity_points, only: [:new, :create, :show, :edit, :update, :destroy]
 
   get 'users/info' => 'users#info'
-  get 'users/matching' => 'users#matching'
+  get 'users/matchings' => 'users#matchings'
+  get 'users/seach' => 'users#seach'
   get 'users/unsubscribe' => 'users#unsubscribe'
   patch 'users/withdraw' => 'users#withdraw'
-  resources "users", path: 'users/my_page', only: [:show, :edit, :update]
+  resources "users", path: 'users/my_page', only: [:show, :edit, :update] do
+    member do
+      get :matching
+    end
+  end
 
   root to: "homes#top"
   get "about" => "homes#about", as: "about"

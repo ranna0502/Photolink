@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_103951) do
+ActiveRecord::Schema.define(version: 2022_04_08_131326) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(version: 2022_04_05_103951) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reactions", force: :cascade do |t|
-    t.integer "to_user_id", null: false
-    t.integer "from_user_id", null: false
-    t.integer "reaction_status", null: false
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["from_user_id"], name: "index_reactions_on_from_user_id"
-    t.index ["to_user_id"], name: "index_reactions_on_to_user_id"
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+    t.index ["following_id"], name: "index_relationships_on_following_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -121,6 +121,4 @@ ActiveRecord::Schema.define(version: 2022_04_05_103951) do
   add_foreign_key "chat_messages", "users"
   add_foreign_key "chat_room_users", "chat_rooms"
   add_foreign_key "chat_room_users", "users"
-  add_foreign_key "reactions", "users", column: "from_user_id"
-  add_foreign_key "reactions", "users", column: "to_user_id"
 end
