@@ -8,19 +8,19 @@
       <h6>活動地点へ行ってみましょう！</h6>
 
         <div>
-          日付：<%= @activity_point.date %>
-        </div>
-        <div>
-          時間帯：<%= @activity_point.time_zone %>
+          活動日時：<%= @activity_point.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
         <div>
           人数：<%= @activity_point.person %>
         </div>
         <div>
-          活動地点：<%= @activity_point.address %>
+          スポット：<%= @activity_point.spot %>
         </div>
         <div>
-          活動予定：<%= @activity_point.activity_status %>
+          地点住所：<%= @activity_point.prefecture %><%= @activity_point.address %>
+        </div>
+        <div>
+          登録ステータス：<%= @activity_point.activity_status_i18n %>
         </div>
         <div>
           要望：<%= @activity_point.request %>

@@ -1,61 +1,70 @@
-<table>
-  <tr><%= image_tag user.get_profile_image, size:"100x100" %></tr>
+<table >
   <tr>
-	  <th>name</th>
-	  <th><%= user.nickname %> </th>
+    <th class="pb-3"><%= image_tag user.get_profile_image, size:"100x100" %></th>
+    <th><%= user.nickname %></th>
   </tr>
   <tr>
-	  <th>自己紹介</th>
-	  <th><%= user.introduction %></th>
+	  <th class="pb-3">評価</th>
+	  <th></th>
   </tr>
-  <tr>
-    <th>
-      <%= link_to new_activity_point_path do %>
-         活動地点登録
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  activity_point_path(current_user) do %>
-        活動地点確認
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  notifications_path do %>
-        通知一覧
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  chat_rooms_path do %>
-        やりとり一覧
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  edit_user_path(current_user) do %>
-        アカウント情報
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  destroy_user_session_path, method: :delete do %>
-        ログアウト
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      <%= link_to  users_unsubscribe_path do %>
-        退会
-      <% end %>
-    </th>
-  </tr>
-
 </table>
+
+
+<!--リスト-->
+<div class="l-main">
+  <div class="menu">
+    <div class="menu__body">
+      <ul class="nav">
+        <li class="nav__item">
+          <%= link_to  notifications_path, class: "nav__item-link is-active" do %>
+            <% if unchecked_notifications.any? %>
+                <i class="far fa-bell nav__item-icon", style="font-size: 1.5em;" ></i>
+                <span class="nav__item-text">通知</span>
+                <i class="fas fa-circle n-circle "></i>
+            <% else %>
+              <i class="far fa-bell nav__item-icon", style="font-size: 1.5em;" ></i>
+              <span class="nav__item-text">通知</span>
+            <% end %>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to  users_matchings_path, class: "nav__item-link" do %>
+            <i class="fas fa-solid fa-envelope nav__item-icon"></i>
+            <span class="nav__item-text">メール</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to  edit_user_path(current_user), class: "nav__item-link" do %>
+            <i class="fas fa-solid fa-user nav__item-icon"></i>
+            <span class="nav__item-text">アカウント情報</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to  destroy_user_session_path, class: "nav__item-link", method: :delete do %>
+            <i class="fas fa-sign-out-alt nav__item-icon"></i>
+            <span class="nav__item-text">ログアウト</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to  users_unsubscribe_path, class: "nav__item-link" do %>
+            <i class="fas fa-solid fa-reply nav__item-icon"></i>
+            <span class="nav__item-text">退会</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to new_activity_point_path, class: "nav__item-link" do %>
+            <i class="fas fa-solid fa-camera nav__item-icon"></i>
+            <span class="nav__item-text">活動地点を登録する</span>
+          <% end %>
+        </li>
+        <li class="nav__item">
+          <%= link_to  activity_point_path(current_user), class: "nav__item-link" do %>
+            <i class="fas fa-light fa-image nav__item-icon"></i>
+            <span class="nav__item-text">活動記録を見る</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

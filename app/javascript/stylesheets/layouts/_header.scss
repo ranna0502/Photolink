@@ -1,0 +1,28 @@
+*{
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  font-family:arial;
+}
+body{background:#ecf0f1; font-family:arial; margin:0; color:#888}
+.banner{
+  background:#00DAFC;
+  line-height:400px;
+  text-align:center;
+  color:#fff;
+  font-size:60px;
+  height:400px;
+  width: 100%;
+}
+
+.header{
+  height:100px;
+  background:#00DAFC;
+  color:#fff;
+  width:100%;
+}
+
+
+.p{
+  font-size: 12px;
+}

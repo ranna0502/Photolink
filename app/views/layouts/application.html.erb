@@ -13,6 +13,8 @@
   <body>
     <%= render "layouts/header" %>
       <main>
+        <p id="notice"><%= flash[:notice] %></p>
+        <p id="alert"><%= flash[:alert] %></p>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

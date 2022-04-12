@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_08_131326) do
+ActiveRecord::Schema.define(version: 2022_04_09_064407) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(version: 2022_04_08_131326) do
 
   create_table "activity_points", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.date "date", null: false
-    t.time "time_zone", null: false
     t.integer "person", null: false
     t.text "request", null: false
     t.string "address", null: false
@@ -52,6 +50,8 @@ ActiveRecord::Schema.define(version: 2022_04_08_131326) do
     t.integer "activity_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "spot"
+    t.string "prefecture"
   end
 
   create_table "chat_messages", force: :cascade do |t|
@@ -81,11 +81,14 @@ ActiveRecord::Schema.define(version: 2022_04_08_131326) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.integer "reaction_id"
+    t.integer "chat_message_id"
     t.string "action", default: "", null: false
     t.boolean "is_checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["chat_message_id"], name: "index_notifications_on_chat_message_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "relationships", force: :cascade do |t|

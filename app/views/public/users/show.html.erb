@@ -1,14 +1,18 @@
-<%= link_to "案内へ", users_info_path %>
 
-<div><h1>会員情報</h1></div>
+
 <div class='container px-5 px-sm-0'>
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center border-bottom border-dark py-3 mb-5">Mypage</h2>
+    </div>
+  </div>
+
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-4'>
       <!--infoの部分テンプレート引用-->
       <%= render 'guide', user: @user %>
-
-      <h6>会員情報</h6>
-
+    </div>
+    <div class='col-md-8'>
         <div>
           名前（姓）：<%= @user.last_name %>
         </div>
@@ -23,7 +27,7 @@
         </div>
 
         <%= link_to '編集する', edit_user_path(@user), class: "btn btn-sm btn-success" %>
-
+        <%= link_to "案内へ", users_info_path %>
     </div>
   </div>
 </div>

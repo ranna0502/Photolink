@@ -1,0 +1,52 @@
+<h2>検索しましょう</h2>
+<%= search_form_for @search do |f| %>
+  <div class= "form_row mt-3 mb-3 justify-content-md-center" >
+    <div class="col-md-4">
+      <%= f.search_field :spot_or_address_cont, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県を選択' }, { class: 'custom-select' } %>
+    </div>
+    <div class="col-md-2">
+      <%= f.label :マッチングしたい人 %></br>
+    　<%= f.radio_button :activity_status_eq, '', {:checked => true} %>指定なし
+      <%= f.radio_button :activity_status_eq, 0 %>カメラマン
+      <%= f.radio_button :activity_status_eq, 1 %>モデル
+    </div>
+    <div class="col-md-1">
+      <%= f.submit '検索', class: 'btn btn-primary' %>
+    </div>
+
+  </div>
+<% end %>
+
+<h2>活動検索結果</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>ニックネーム</th>
+            <th>活動日時</th>
+            <th>活動地点</th>
+            <th>住所</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <% @activity_points.each do |activity_point| %>
+              <tr>
+                <td>
+                  <%= image_tag activity_point.user.get_profile_image, size:'50x50' %>
+                </td>
+                <td>
+                  <%= link_to matching_user_path(activity_point.user) do %>
+                    <%= activity_point.user.nickname %>
+                  <% end %>
+                  </td>
+                <td><%= activity_point.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+                <td><%= activity_point.spot %></td>
+                <td><%= activity_point.prefecture %><%= activity_point.address %></td>
+              </tr>
+            <% end %>
+        </tbody>
+      </table>

@@ -13,22 +13,26 @@ end
 #エンドユーザー側ルーティング
 scope module: :public do
 
-  resources :relationships, only: [:create]
   resources :chat_rooms, only: [:create, :show]
   resources :notifications, only: [:index]
+  get '/activity_points' => 'activity_points#search'
   resources :activity_points, only: [:new, :create, :show, :edit, :update, :destroy]
 
   get 'users/info' => 'users#info'
   get 'users/matchings' => 'users#matchings'
-  get 'users/seach' => 'users#seach'
   get 'users/unsubscribe' => 'users#unsubscribe'
   patch 'users/withdraw' => 'users#withdraw'
-  resources "users", path: 'users/my_page', only: [:show, :edit, :update] do
+  resources "users", path: 'users/my_page', only: [:show, :edit, :update]
+  resources "users" do
     member do
       get :matching
+      get :following, :followers
     end
   end
+  resources :relationships, only: [:create]
 
+
+  mount ActionCable.server => '/cable'
   root to: "homes#top"
   get "about" => "homes#about", as: "about"
 

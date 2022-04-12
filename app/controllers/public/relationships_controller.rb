@@ -1,14 +1,9 @@
 class Public::RelationshipsController < ApplicationController
 
     def create
-      current_user.active_relationships.create(create_params)
+      @user = User.find(params[:following_id])
+      current_user.follow(@user)
+      @user.create_notification_follow!(current_user)
     end
 
-
-
-    private
-
-    def create_params
-      params.permit(:following_id)
-    end
 end

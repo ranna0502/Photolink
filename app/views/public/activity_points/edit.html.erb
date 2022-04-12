@@ -11,23 +11,24 @@
         <%= render 'layouts/errors', obj: @activity_point %>
 
         <div class="form-group">
-          <%= f.label :日付 %>
-          <%= f.text_field :date, class: "form-control name" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :時間帯 %>
-          <%= f.text_field :time_zone, class: "form-control time_zone" %>
+          <%= f.label :活動日時 %>
+          <%= f.datetime_field :created_at, class: 'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :人数 %>
           <%= f.text_field :person, class: "form-control person" %>
         </div>
         <div class="form-group">
-          <%= f.label :活動予定地点 %>
+          <%= f.label :近くのスポット %>
+          <%= f.text_field :spot, class: "form-control spot" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :近くの住所 %>
+          <%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県を選択' }, { class: 'custom-select' } %>
           <%= f.text_field :address, class: "form-control address" %>
         </div>
         <div class="form-group">
-          <%= f.label :どちらを募集していますか？ %></br>
+          <%= f.label :どちらで登録しますか？ %></br>
           <!--カメラマンのラジオボタン-->
           <%= f.radio_button :activity_status, ActivityPoint.activity_statuses.key(0) %>
           <%= f.label :activity_status, ActivityPoint.activity_statuses_i18n[:photographer] %>

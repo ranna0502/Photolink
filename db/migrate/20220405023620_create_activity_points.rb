@@ -3,8 +3,6 @@ class CreateActivityPoints < ActiveRecord::Migration[6.1]
     create_table :activity_points do |t|
 
       t.integer :user_id, null: false
-      t.date :date, null: false
-      t.time :time_zone, null: false
       t.integer :person, null: false
       t.text :request, null: false
       t.string :address, null: false

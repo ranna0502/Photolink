@@ -1,1 +1,18 @@
-<h1>chat_rooms/show</h1>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+
+    <p>チャットルームページ</p>
+
+    <div id='chat-messages'>
+      <!--render partial: 'chat_messages/chat_message', collectoin: @chat_messagesの省略形-->
+      <%= render @chat_messages %>
+    </div>
+
+    <form>
+      <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
+    </form>
+
+    </div>
+  </div>
+</div>

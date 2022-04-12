@@ -4,7 +4,8 @@
     <div class='col-md-3'>
       <!--infoの部分テンプレート引用-->
       <%= render 'guide', user: @user %>
-
+    </div>
+    <div class='col-md-5'>
       <h6>変更はこちらから</h6>
       <%= form_with model: @user, local:true do |f| %>
         <!--errorsの部分テンプレート引用-->

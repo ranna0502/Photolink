@@ -7,10 +7,10 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
   has_many :activity_points
-  has_many :active_relationships,class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
-  has_many :following, through: :active_relationships
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
+  has_many :following, through: :following_relationships
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
   has_many :chat_room_users
   has_many :chat_rooms, through: :chat_room_users
   has_many :chat_messages
@@ -26,19 +26,42 @@ class User < ApplicationRecord
     end
   end
 
+    # 退会済みのユーザーがログインできないメソッド
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 # プロフィール画像取得メソッド
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-#既にフォローしている人の中に存在するか確認するメソッド
-  def following?(other_user)
-    following.include?(other_user)
+#フォローしているか確認するメソッド
+  def following?(user)
+    following_relationships.find_by(following_id: user.id)
+  end
+
+#フォローする時のメソッド
+  def follow(user)
+    following_relationships.create!(following_id: user.id)
   end
 
 #ログインしているユーザーとマッチングしているユーザーを取得メソッド
   def matchers
     following & followers
+  end
+
+
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    # 連続でフォローボタンを押しても１回目だけを通知する
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
   end
 
 end
