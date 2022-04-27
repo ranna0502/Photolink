@@ -27,6 +27,9 @@
 ・観光スポットでの写真撮影時</br>
 
 ## 設計書
+### テーブル定義書
+https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM1KU/edit#gid=2145917830
+### ER図
 ![image](https://user-images.githubusercontent.com/80334879/165627532-73f06ca2-108e-4cf9-a406-bfff98b293f5.png)
 
 
