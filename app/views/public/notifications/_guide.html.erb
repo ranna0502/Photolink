@@ -1,0 +1,63 @@
+<div class="all-profile">
+  <!--プロフィール-->
+  <%= link_to user_path(@user) do %>
+    <figure class="snip1344">
+      <%= image_tag user.get_profile_image, class: "background" %>
+      <%= image_tag user.get_profile_image, class: "profile" %>
+      <figcaption>
+        <h4>
+          <%= user.nickname %>
+          <% if ActivityPoint.exists?(user_id: user) %>
+            <span><%= activity_point.activity_status_i18n %></span>
+          <% end %>
+          <% if user_signed_in? && @user != current_user %>
+            <% if current_user.following?(@user) %>
+              <span>フォロー済み</span>
+            <% end %>
+          <% end %>
+        </h4>
+      </figcaption>
+    </figure>
+  <% end %>
+
+
+  <!--リスト-->
+  <div class="l-main">
+    <div class="menu">
+      <div class="menu__body">
+        <ul class="nav">
+          <li class="nav__item">
+            <%= link_to  user_path(current_user), class: "nav__item-link" do %>
+              <i class="fas fa-solid fa-user nav__item-icon"></i>
+              <span class="nav__item-text">アカウント情報</span>
+            <% end %>
+          </li>
+          <li class="nav__item">
+            <%= link_to  notifications_path, class: "nav__item-link " do %>
+                <i class="far fa-bell nav__item-icon", style="font-size: 1.5em;" ></i>
+                <span class="nav__item-text">通知</span>
+            <% end %>
+          </li>
+          <li class="nav__item">
+            <%= link_to  users_matchings_path, class: "nav__item-link" do %>
+              <i class="fas fa-solid fa-envelope nav__item-icon"></i>
+              <span class="nav__item-text">メッセージ</span>
+            <% end %>
+          </li>
+          <li class="nav__item">
+            <%= link_to new_activity_point_path, class: "nav__item-link" do %>
+              <i class="fas fa-solid fa-camera nav__item-icon"></i>
+              <span class="nav__item-text">活動地点を登録する</span>
+            <% end %>
+          </li>
+          <li class="nav__item">
+            <%= link_to  users_unsubscribe_path, class: "nav__item-link" do %>
+              <i class="fas fa-solid fa-reply nav__item-icon"></i>
+              <span class="nav__item-text">退会</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

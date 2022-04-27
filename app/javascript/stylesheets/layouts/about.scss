@@ -1,0 +1,35 @@
+
+$title-color: #289dd2;
+$text-color: #365b6d;
+
+
+.about-text-box{
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 30;
+    left: 20%;
+    top: 40px;
+    background-color: rgb(255 255 255 / 86%);
+
+
+    & h3{
+        padding-top: 20px;
+        color: $title-color;
+      }
+
+    & h6{
+      padding-bottom: 30px;
+      color: $text-color;
+    }
+
+    & p{
+      color: $text-color;
+    }
+
+    & .photo-img{
+      width: 95%;
+      padding-bottom: 30px;
+
+    }
+}

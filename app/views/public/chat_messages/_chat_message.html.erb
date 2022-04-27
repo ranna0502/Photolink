@@ -1,5 +1,19 @@
+
 <div class="chat-message">
-    <!--< image_tag chat_message.user.get_profile_image, size:'30x30' %>-->
-    <%= chat_message.user.nickname %>
-  <%= chat_message.content %>
+    <!--ログインユーザーとレイアウトの切り分け-->
+  <% if chat_message.user.id != current_user.id %>
+    <div class="chat-message__partner">
+        <%= image_tag chat_message.user.get_profile_image, class: "chat-message__partner-img" %>
+
+      <div class="chat-message__content">
+        <%= chat_message.content %>
+      </div>
+    </div>
+  <% else %>
+    <div class="chat-message__current-user">
+      <div class="chat-message__content main-color-bg">
+        <%= chat_message.content %>
+      </div>
+    </div>
+  <% end %>
 </div>

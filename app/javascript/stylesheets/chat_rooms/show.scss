@@ -1,0 +1,150 @@
+$sub-color: #365b6d;
+$text-color: #768a92;
+
+
+// --------マッチングしたユーザー一覧-------------
+
+.images-box {
+    background-color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    width: 90%;
+    margin-right: 10%;
+  }
+
+.img{
+  width: 40px;
+  height: 40px;
+  -o-object-fit: cover;
+  border-radius: 50%;
+  -o-object-position: -20px 0px;
+  margin: 5px 0px 10px 10px;
+}
+
+
+.img-box-title{
+  height: 50px;
+  line-height: 50px;
+  background-color: $sub-color;
+  border-radius: 4px;
+
+  & ._span{
+        padding-left: 15px;
+        color: #fff;
+      }
+}
+
+.img-box{
+  border-bottom: 1px solid #f3f3f3;
+  height: 50px;
+  line-height: 50px;
+
+  &:hover{
+    background-color: #f0f0f0;
+  }
+
+}
+
+.chat-link{
+    color: #888;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+
+
+
+// -------------チャット-----------------
+
+.chat-room-show-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  background: #f4f2ed;
+  font-size: 14px;
+  border-radius: 4px;
+
+  .navbar{
+    border-radius: 4px;
+  }
+
+  .chat-room {
+    &__header {
+      border-bottom: 1px solid #fafafa;
+      background-color: $sub-color;
+    }
+    &__partner {
+      display: flex;
+      align-items: center;
+      &-name {
+        margin-right: 8px;
+        font-weight: bold;
+        color: whitesmoke;
+        vertical-align: middle;
+      }
+      &-img {
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    &__message-form {
+      margin-top: auto;
+      border-top: 1px solid #e8e8e8;
+      padding: 24px 24px 0 24px;
+      width: 100%;
+
+      &_textarea {
+        width: 100%;
+        border: none;
+        white-space: normal;
+        height: 100px;
+      }
+    }
+    &__form {
+    display: block;
+    margin-top: 20px;
+    }
+  }
+}
+
+.chat-message {
+  &__partner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &-img {
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      margin-left: 8px;
+    }
+  }
+  &__content {
+    margin: 4px 8px 4px;
+    padding: 8px 12px;
+    max-width: 70%;
+    color: #555;
+    font-size: 14px;
+    border-radius: 8px;
+    background: #e4e2e2;
+  }
+  &__current-user {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.main-color-bg {
+  background: rgb(255 104 58);
+  color: #fff;
+}
+
+textarea:focus {
+  outline: none;
+}
+

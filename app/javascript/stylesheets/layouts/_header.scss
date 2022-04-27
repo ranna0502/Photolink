@@ -1,28 +1,103 @@
-*{
-  box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-  font-family:arial;
-}
-body{background:#ecf0f1; font-family:arial; margin:0; color:#888}
-.banner{
-  background:#00DAFC;
-  line-height:400px;
-  text-align:center;
-  color:#fff;
-  font-size:60px;
-  height:400px;
-  width: 100%;
-}
+$text-color: #768a92;
+
+// -----------ヘッダー----------------
 
 .header{
-  height:100px;
-  background:#00DAFC;
-  color:#fff;
-  width:100%;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 40;
+  background:#00dafceb;
+
+  & .navbar{
+    line-height: 40px;
+  }
+
+  & .container-fluid{
+    width: 1400px;
+    height: 50px;
+  }
+}
+
+.FlashMessage{
+  height: 50px;
+  line-height: 50px;
 }
 
 
-.p{
-  font-size: 12px;
+// フッター
+
+.footer{
+  width: 100%;
+  height: 60px;
+  background:#00dafceb;
+  color: #fff;
+  line-height: 60px;
+
+  & p{
+    text-align: center;
+  }
 }
+
+
+// -------------header関連のBox---------------
+
+
+.buttonBox{
+  position:relative;
+  max-width: 200px;
+  min-width: 100px;
+  flex: 20%;
+  height: 40px;
+}
+
+.header-button{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    text-transform: uppercase;
+    color: #0ca0ac;
+    font-weight: 400;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    line-height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.27);
+    transition:all .5s ease-in-out;
+
+    &:hover{
+      background:white;
+      color:#f97a54;
+      text-decoration: none;
+    }
+
+    &.message{
+      padding: 10px 7px;
+    }
+
+    &.top{
+      padding: 10px 22px;
+    }
+
+    &.start{
+      padding: 10px 20px;
+      background: rgb(43 158 211);
+      color: #faf9f6;
+
+      &:hover{
+        color: #fdfdfd;
+        background: #f97a54;
+      }
+    }
+
+
+}
+
+
+

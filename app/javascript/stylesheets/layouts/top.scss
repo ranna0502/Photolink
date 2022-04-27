@@ -1,0 +1,72 @@
+// レスポンシブ対応
+// ブレイクポイント
+$mb1: 1441px;
+$mb2: 2560px;
+// @media 拡張ディスプレイ
+@mixin display{
+  @media screen and (min-width: $mb1) and (max-width: $mb2) {
+    @content;
+  }
+}
+
+
+// ----------row 全体適用---------------------
+
+.firstview{
+  display: flex;
+  justify-content: right;
+}
+
+
+// ----------右側のレイアウト-----------------
+
+.firstview-right-box{
+  height: 1000px;
+  margin-top: -10px;
+  position: relative;
+  z-index: 10;
+  background-color: #aacfd7;
+
+  & .background-box1{
+      height: 600px;
+      position: absolute;
+      left: -50px;
+      top: 50px;
+      z-index: 40;
+  }
+
+  & .background-box2{
+      height: 600px;
+      position: absolute;
+      left: 280px;
+      top: 150px;
+      z-index: 30;
+  }
+}
+
+
+
+// ----------左側のレイアウト-----------------
+
+.firstview-left-box{
+
+  & .firstview-text-box{
+    text-align: center;
+    padding-top: 100px;
+
+      @include display{
+        padding-left: 150px;
+      }
+  }
+
+  & .start-button-box{
+    text-align: center;
+
+      @include display{
+        padding-left: 150px;
+      }
+
+  }
+}
+
+

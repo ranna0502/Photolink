@@ -1,0 +1,154 @@
+$title-color: #289dd2;
+$sub-color: #365b6d;
+$background: #fbf9f3;
+
+
+.subtitle{
+  text-align: center;
+  padding: 5px 0 ;
+  color: $sub-color;
+  background-color:$background;
+  border-bottom: solid 2px $sub-color;
+}
+
+.sub-message{
+  display: flex;
+  height: 40px;
+}
+
+
+//------- spot deleteボタン----------
+
+.danger-button-box{
+  width: 20px;
+  margin-left: auto;
+  margin-top: -20px;
+  margin-right: 35px;
+}
+
+
+
+//-------spot,profile editボタン------------
+
+.button-box{
+  background-color: $background;
+  padding: 10px 0px 30px;
+  text-align: right;
+}
+
+
+//-------チャットルーム　一覧へボタン------------
+
+.index-button-box{
+  width: 20%;
+  height: 20%;
+}
+
+//-------matching followボタン------------
+
+.follow-button-box{
+    margin-top: 30px;
+    margin-left: 40%;
+}
+
+//-------matching messege遷移ボタン------------
+
+.matching-button-box{
+    margin-top: 30px;
+    margin-left: 33%;
+}
+
+
+// ---------ボタン雛形------------
+
+.button {
+  -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  // display: block;
+  margin-right: 30px;
+  max-width: 180px;
+  border-radius: 4px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 12px;
+
+  &.update{
+    margin: 0px;
+  }
+
+  &.sort {
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 5px 20px;
+  }
+
+}
+
+.button {
+  background-color: #faf9f6;
+  text-decoration: none;
+  border: 1px solid rgb(54, 91, 108);
+  color: $sub-color;
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 0px inset;
+
+  &:hover {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+    box-shadow: #f97a54 0 0px 0px 40px inset;
+    border: 1px solid #f97a54;
+  }
+
+  &.sort:hover,
+  &.index:hover {
+    box-shadow: rgb(54 91 108 / 52%) 0 0px 0px 40px inset;
+    border: 1px solid rgb(54 91 108 / 52%);
+  }
+
+  &.danger{
+    border: 1px solid rgb(201, 15, 15, 0.6);
+    color: rgb(201, 15, 15, 0.6);
+    box-shadow: rgb(201, 15, 15, 0.4) 0 0px 0px 0px inset;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.85);
+      box-shadow: rgb(201, 15, 15, 0.7) 0 0px 0px 40px inset;
+    }
+  }
+}
+
+
+// -----------プロフィールカード---------------
+
+.profile{
+  background-color: $background;
+  margin-bottom: 10px;
+}
+
+.profile-top{
+  display: flex;
+
+}
+
+  .profile-box{
+    background-color:$background;
+    width: 100%;
+
+    & .profile-title{
+      padding: 15px 25px 0px;
+      color: $sub-color;
+    }
+
+    & .profile-body{
+      margin: 0px 20px 20px 20px;
+      padding: 20px 20px;
+      background: #fff;
+      width: 90%;
+      border-radius: 4px;
+
+      &.area{
+          width: 95%;
+        }
+    }
+
+  }
+

@@ -1,1 +1,32 @@
-<h1>aboutページ</h1>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-7 about-text-box">
+      <h3>素敵なシャッターチャンスを、すべてのひとに。</h3>
+      <h6>必要な時・場所で繋がろう。</br>
+          カメラマンと写真を撮って欲しい人のマッチングサービス
+      </h6>
+      <%= image_tag 'photo.jpg', class: "photo-img" %>
+      <h3>こんな時ありませんか？</h3>
+      <p>
+        -写真を撮って欲しい人-</br>
+        お出かけ先でみんなで写った写真を残したい!
+      </p>
+        <%= image_tag 'photo2.jpg', class: "photo-img" %>
+      <p>
+        -写真を撮りたい人-</br>
+        いろんなシチュエーションの撮影にチャレンジしたい!
+      </p>
+        <%= image_tag 'photo3.jpg', class: "photo-img" %>
+      <p>
+        サービスを通して想いを実現します。ぜひご利用ください。
+      </p>
+      <%= link_to 'はじめる', new_user_session_path, class: "header-button start" %>
+    </div>
+
+    <div class="col-5 background-color-box3">
+    </div>
+  </div>
+
+</div>

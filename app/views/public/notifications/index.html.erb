@@ -1,7 +1,25 @@
-<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
-<% if notifications.exists? %>
-  <!--< render partial: "notification", collection: @notifications %>の省略形-->
-  <%= render @notifications %>
-<% else %>
-  <p>通知はありません</p>
-<% end %>
+<div class='container-field px-5 px-sm-0'>
+  <div class="row">
+    <div class='col-md-3 guide-content left'>
+      <!--guide部分テンプレート引用-->
+      <%= render 'guide', user: @user, activity_point: @activity_point %>
+    </div>
+    <div class='col-md-6 offset-1 main-content fixed'>
+      <h4 class=" subtitle mb-4">NOTICE</h4>
+      <div class="jscroll-div">
+        <div class="jscroll-container ">
+          <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+          <% if notifications.exists? %>
+            <!--< render partial: "notification", collection: @notifications %>の省略形-->
+            <%= render @notifications %>
+            <%= paginate @notifications %>
+          <% else %>
+            <p>通知はありません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

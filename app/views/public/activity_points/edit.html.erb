@@ -1,34 +1,41 @@
-<div><h1>活動地点の編集</h1></div>
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <!--infoの部分テンプレート引用-->
-      <!--< render 'users/info', user: @user %>-->
 
-      <h6>変更はこちらから</h6>
+<div class='container-field px-5 px-sm-0'>
+  <div class='row'>
+    <div class="col ">
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-md-3 guide-content left'>
+      <!--guide部分テンプレート引用-->
+      <%= render 'public/users/guide', user: @user, activity_point: @activity_point %>
+    </div>
+    <div class='col-md-6 offset-1 profile-edit main-content'>
+      <h4 class=" subtitle">MYSPOT EDIT</h4>
       <%= form_with model: @activity_point, local:true do |f| %>
         <!--errorsの部分テンプレート引用-->
-        <%= render 'layouts/errors', obj: @activity_point %>
+        <%= render "public/shared/error_messages", resource: @activity_point %>
 
-        <div class="form-group">
-          <%= f.label :活動日時 %>
-          <%= f.datetime_field :created_at, class: 'form-control' %>
+        <div class="form-group row mb-4 mt-5">
+          <div class="col-md-3"><%= f.label :活動日時 %></div>
+          <div class="col-md-3"><%= f.date_field :date, class: 'form-control' %></div>
+          <div class="col-md-3"><%= f.time_field :time, include_blank: true, class: 'form-control' %></div>
         </div>
-        <div class="form-group">
-          <%= f.label :人数 %>
-          <%= f.text_field :person, class: "form-control person" %>
+        <div class="form-group row mb-4 ">
+          <div class="col-md-3"><%= f.label :人数 %></div>
+          <div class="col-md-3 "><%= f.select :person, *[1..20], include_blank: "人数選択", class: "form-control person"  %></div>
         </div>
-        <div class="form-group">
-          <%= f.label :近くのスポット %>
-          <%= f.text_field :spot, class: "form-control spot" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-3"><%= f.label :スポット %></div>
+          <div class="col-md-9"><%= f.text_field :spot, class: "form-control spot" %></div>
         </div>
-        <div class="form-group">
-          <%= f.label :近くの住所 %>
-          <%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県を選択' }, { class: 'custom-select' } %>
-          <%= f.text_field :address, class: "form-control address" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-3"><%= f.label :住所 %></div>
+          <div class="col-md-3"><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県を選択' }, { class: 'custom-select' } %></div>
+          <div class="col-md-6"><%= f.text_field :address, class: "form-control address" %></div>
         </div>
-        <div class="form-group">
-          <%= f.label :どちらで登録しますか？ %></br>
+        <div class="form-group row mb-4">
+          <div class="col-md-3"><%= f.label :活動ステータス %></div>
+          <div class="col-md-3">
           <!--カメラマンのラジオボタン-->
           <%= f.radio_button :activity_status, ActivityPoint.activity_statuses.key(0) %>
           <%= f.label :activity_status, ActivityPoint.activity_statuses_i18n[:photographer] %>
@@ -36,13 +43,16 @@
           <!--モデルのラジオボタン-->
           <%= f.radio_button :activity_status, ActivityPoint.activity_statuses.key(1) %>
           <%= f.label :activity_status, ActivityPoint.activity_statuses_i18n[:subject]%>
+          </div>
         </div>
-        <div class="form-group">
-          <%= f.label :要望 %>
-          <%= f.text_area :request, class: "form-control request" %>
+        <div class="form-group row mb-4">
+          <div class="col-md-3"><%= f.label :要望 %></div>
+          <div class="col-md-9"><%= f.text_area :request, class: "profile-text_area form-control request" %></div>
         </div>
-        <div class="form-group">
-          <%= f.submit "更新する", class: 'btn btn-secondary' %>
+        <div  class="form-group d-flex">
+          <div class="col-md-2 offset-md-10">
+            <%= f.submit "Update", class: 'button update' %>
+          </div>
         </div>
       <% end %>
     </div>

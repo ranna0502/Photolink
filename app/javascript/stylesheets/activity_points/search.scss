@@ -1,0 +1,68 @@
+
+$sub-color: #365b6d;
+
+// --------テーブルレイアウト--------------
+
+.sort-table{
+  background-color: $sub-color;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+
+    & div:first-child{
+      margin-right: auto;
+    }
+}
+
+
+.jscroll-div{
+  width: 100%;
+  height: 480px;
+  overflow-y: scroll;
+
+  &.users_list{
+    height: 250px;
+  }
+}
+
+.pagination{
+  display: none;
+}
+
+
+.table {
+    width: 100%;
+    margin: 0px;
+    color: #212529;
+    background-color: #fff;
+    font-size: 13px;
+    border-radius: 4px;
+
+  & td {
+      height: 100px;
+      line-height: 100px;
+      padding: 0rem 0.75rem;
+      border-top: 1px solid #F0F0F0;
+  }
+}
+
+
+.table-img{
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+  border-radius: 50%;
+  -o-object-position: -20px 0px;
+  margin: 5px 0px 10px 10px;
+}
+
+
+
+
+// -----------検索フォーマット------------------
+
+.search-box{
+  width: 90%;
+  padding: 10px;
+  background-color: #f6f3e8;
+}

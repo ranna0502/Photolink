@@ -1,33 +1,86 @@
 
-
-<div class='container px-5 px-sm-0'>
-  <div class="row">
-    <div class="col">
-      <h2 class="text-center border-bottom border-dark py-3 mb-5">Mypage</h2>
-    </div>
-  </div>
-
+<div class='container-field px-5  px-sm-0'>
   <div class='row'>
-    <div class='col-md-4'>
-      <!--infoの部分テンプレート引用-->
-      <%= render 'guide', user: @user %>
+    <div class='col-md-3 guide-content left'>
+        <!--guideの部分テンプレート引用-->
+        <%= render 'guide', user: @user, activity_point: @activity_point %>
     </div>
-    <div class='col-md-8'>
-        <div>
-          名前（姓）：<%= @user.last_name %>
-        </div>
-        <div>
-          名前（名）：<%= @user.first_name %>
-        </div>
-        <div>
-          ニックネーム：<%= @user.nickname %>
-        </div>
-        <div>
-          自己紹介：<%= @user.introduction %>
-        </div>
 
-        <%= link_to '編集する', edit_user_path(@user), class: "btn btn-sm btn-success" %>
-        <%= link_to "案内へ", users_info_path %>
+    <div class='col-md-6 main-content'>
+      <h4 class=" subtitle">MYPAGE</h4>
+      <div class="profile">
+        <div class="profile-top">
+          <div class="profile-box">
+            <p class="profile-title">ニックネーム</p>
+            <p class="profile-body"><%= @user.nickname %></p>
+          </div>
+          <div class="profile-box">
+            <% if ActivityPoint.exists?(user_id: @user) %>
+              <p class="profile-title">活動ステータス</p>
+              <p class="profile-body"><%= @activity_point.activity_status_i18n %></p>
+            <% else %>
+              <p class="profile-title">活動ステータス</p>
+              <p class="profile-body">登録なし</p>
+            <% end %>
+          </div>
+        </div>
+          <div class="profile-box">
+            <p class="profile-title">自己紹介</p>
+            <p class="profile-body area"><%= @user.introduction %></p>
+          </div>
+            <!--ゲストユーザーの場合、編集ボタンを表示しない-->
+            <% if @user.nickname != "guestuser" && @user == current_user %>
+              <div class="button-box">
+                <%= link_to 'Edit', edit_user_path(@user), class: 'button' %>
+              </div>
+            <% end %>
+          </div>
+
+      <h4 class=" subtitle">MYSPOT</h4>
+    <% if ActivityPoint.exists?(user_id: @user) %>
+      <div class="profile">
+        <div class="profile-top">
+          <div class="profile-box">
+            <p class="profile-title">活動日時</p>
+            <p class="profile-body"><%= l @activity_point.date, format: :short %>  <%= l @activity_point.time, format: :short %></p>
+          </div>
+          <div class="profile-box">
+              <p class="profile-title">人数</p>
+              <p class="profile-body"><%= @activity_point.person %> 人</p>
+          </div>
+        </div>
+          <div class="profile-box">
+            <p class="profile-title">スポット</p>
+            <p class="profile-body area"><%= @activity_point.spot %></p>
+          </div>
+          <div class="profile-box">
+            <p class="profile-title">地点住所</p>
+            <p class="profile-body area"><%= @activity_point.prefecture %><%= @activity_point.address %></p>
+          </div>
+          <div class="profile-box">
+            <p class="profile-title">要望</p>
+            <p class="profile-body area"><%= @activity_point.request %></p>
+          </div>
+
+            <!--ゲストユーザーの場合、編集ボタンを表示しない-->
+            <% if @user.nickname != "guestuser" && @user == current_user %>
+              <div class="button-box">
+                 <%= link_to 'Edit', edit_activity_point_path(@activity_point), class: "button" %>
+              </div>
+            <% end %>
+          </div>
+      <% else %>
+          <p>登録なし</p>
+      <% end %>
+      </div>
+
+
+
+    <div class='col-md-3 guide-content right'>
+      <% if user_signed_in? && @user == current_user %>
+        <%= render 'public/chat_rooms/chat_lists', users: @users %>
+      <% end %>
     </div>
   </div>
 </div>
+

@@ -17,12 +17,21 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :nickname, presence: true
+  validates :email, presence: true
+  validates :introduction, length: { maximum: 255 }
+
+
 
 # ゲストログインメソッド
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |user|
+    find_or_create_by!(last_name: 'guest' ,first_name: 'guest' ,nickname: 'guestuser' ,email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
+      user.nickname = "guestuser"
+      user.last_name = "guest"
+      user.first_name = "guest"
     end
   end
 
@@ -41,6 +50,10 @@ class User < ApplicationRecord
     following_relationships.find_by(following_id: user.id)
   end
 
+  def follower?(user)
+    follower_relationships.find_by(follower_id: user.id)
+  end
+
 #フォローする時のメソッド
   def follow(user)
     following_relationships.create!(following_id: user.id)
@@ -51,7 +64,7 @@ class User < ApplicationRecord
     following & followers
   end
 
-
+# フォロー通知を作成するメソッド
   def create_notification_follow!(current_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
     # 連続でフォローボタンを押しても１回目だけを通知する

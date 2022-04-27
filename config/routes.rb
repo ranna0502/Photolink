@@ -7,7 +7,7 @@ sessions: 'public/sessions'
 }
 
 devise_scope :user do
-  post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  post 'public/users/guest_sign_in', to: 'public/users/sessions#guest_sign_in'
 end
 
 #エンドユーザー側ルーティング
@@ -16,9 +16,9 @@ scope module: :public do
   resources :chat_rooms, only: [:create, :show]
   resources :notifications, only: [:index]
   get '/activity_points' => 'activity_points#search'
-  resources :activity_points, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :activity_points, only: [:new, :create, :edit, :update, :destroy]
+  get '/activity_points/user_record' => 'activity_points#user_record'
 
-  get 'users/info' => 'users#info'
   get 'users/matchings' => 'users#matchings'
   get 'users/unsubscribe' => 'users#unsubscribe'
   patch 'users/withdraw' => 'users#withdraw'

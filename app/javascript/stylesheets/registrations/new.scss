@@ -1,0 +1,95 @@
+$title-color: #289dd2;
+$text-color: #365b6d;
+
+
+// 新規登録フォームレイアウト
+.form-wrapper {
+  padding: 0 1em;
+  color: $text-color;
+
+  & h1 {
+    text-align: center;
+    padding: 1em 0 0 0;
+    color: $title-color;
+  }
+
+  & form {
+    padding: 0 1.5em;
+  }
+}
+
+
+.form-item {
+  margin-bottom: 0.75em;
+  width: 100%;
+
+  & input {
+    background: #faf9f6;
+    border: none;
+    border-bottom: 2px solid #3d667824;
+    color: $text-color;
+    font-size: 1em;
+    height: 50px;
+    transition: border-color 0.3s;
+    width: 100%;
+
+    &:focus {
+      border-bottom: 2px solid $text-color;
+      outline: none;
+    }
+  }
+}
+
+
+
+.button-panel {
+  margin: 10px auto;
+  width: 70%;
+
+  & .sign-button {
+    background: #f97a54;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    border-radius: 4px;
+
+    &:hover {
+      background: #ff5b2a;
+    }
+  }
+}
+
+
+
+.form-footer {
+  font-size: 1em;
+  padding: 2em 0;
+  text-align: center;
+}
+
+.about-button{
+      background-color: #ecf0f1;
+      text-decoration: none;
+      border: 1px solid rgba(30, 22, 54, 0.6);
+      color: rgba(30, 22, 54, 0.6);
+      box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 0px inset;
+      -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+      transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 12px;
+
+      &:hover{
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.85);
+        box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+      }
+}

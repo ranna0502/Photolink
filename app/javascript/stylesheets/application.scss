@@ -1,6 +1,74 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+// 新規登録、ログイン関連
+@import "registrations/new";
+
+// ヘッダー、ヘッダー,はじめる,ログインなどのボタンの雛形、トップページ、アバウトページ　関連
 @import "layouts/_header";
+@import "layouts/top";
+@import "layouts/about";
 
+// view users、update,delete,一覧などのボタンの雛形　関連
 @import "users/_guide";
+@import "users/show";
+@import "users/edit";
+@import "users/matchings";
 
+// view chat_rooms　関連
+@import "chat_rooms/show";
+
+// view activity_points 関連
+@import "activity_points/search";
+
+// フォント
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
+
+// ----------全体の設定-----------
+
+*{
+  box-sizing:border-box;
+}
+
+main {
+  height: 2100px;
+}
+
+body{
+  background: #faf9f6;
+  margin: 0;
+  padding-top: 80px;
+  color: $text-color
+}
+
+
+
+// -------------変数------------------
+
+$text-color: #768a92; //薄緑
+$text-color2: #fff; //白
+$accent-color: #f97a54; //オレンジ
+
+
+
+// ----------各colの配置設定-----------
+
+.guide-content{
+  position: fixed;
+
+  &.right{
+    left: 76%;
+  }
+
+}
+
+.main-content{
+  position: relative;
+  left: 25%;
+
+  &.fixed{
+    position: fixed;
+  }
+}

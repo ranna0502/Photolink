@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_09_064407) do
+ActiveRecord::Schema.define(version: 2022_04_25_084455) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 2022_04_09_064407) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "spot"
     t.string "prefecture"
+    t.time "time"
+    t.date "date"
   end
 
   create_table "chat_messages", force: :cascade do |t|

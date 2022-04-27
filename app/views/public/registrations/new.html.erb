@@ -1,53 +1,52 @@
 <div class='container'>
   <div class='row d-flex justify-content-around'>
-    <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0">
+    <div class="form-wrapper col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0">
 
-      <h2>新規会員登録</h2>
-      <p class="title_border">こちらから新規登録お願い致します</p>
+      <h1>Sign Up</h1>
+      <p class="form-footer">こちらから新規登録お願い致します</p>
 
       <%= form_with model: @user, url: user_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
 
       <div class="field form-item">
-      <%= f.label :（姓） %>
+      <%= f.label :LASTNAME %>
       <%= f.text_field :last_name, autofocus: true, placeholder:"例）令和", autocomplete: "last_name" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :（名） %>
+      <%= f.label :Firstname %>
       <%= f.text_field :first_name, placeholder:"例）道子", autocomplete: "first_name" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :ニックネーム %>
+      <%= f.label :Nickname %>
       <%= f.text_field :nickname, autofocus: true, placeholder:"例）れいちゃん", autocomplete: "nickname" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :メールアドレス %>
+      <%= f.label :Email %>
       <%= f.email_field :email, placeholder:"例）sample@example.com", autocomplete: "email" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :パスワード（６文字以上） %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
+      <%= f.label :Password（6文字以上）　%>
       <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :パスワード（確認用） %><br />
+      <%= f.label :Password（確認用）%><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
 
       <div class="actions button-panel">
-      <%= f.submit "新規登録", class: 'button' %>
+      <%= f.submit "新規登録", class: 'sign-button' %>
       </div>
       <% end %>
 
-      <p class="pt-3 title_border">既にご登録済みの方</p>
-      <p><%= link_to "こちら", new_user_session_path %>からログインください。</p>
+      <div class="form-footer">
+        <p >既にご登録済みの方</p>
+        <p><%= link_to "こちらからログイン", new_user_session_path, class: "header-button start" %></p>
+      </div>
 
     </div>
   </div>

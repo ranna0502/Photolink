@@ -1,0 +1,23 @@
+.profile-edit{
+  font-size: 14px;
+}
+
+.form-control {
+    font-size: 0.9rem;
+}
+.profile-text_area.form-control {
+    height: 150px;
+}
+
+.profile-text_area.form-control.request {
+    height: 100px;
+}
+
+// セレクトボックス
+select {
+    word-wrap: normal;
+    height: 30px;
+    border: 1px solid #acacac8f;
+    border-radius: 4px;
+}
+

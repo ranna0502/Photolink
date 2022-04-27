@@ -1,28 +1,30 @@
 <div class='container'>
   <div class='row d-flex justify-content-around'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+    <div class="form-wrapper col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
 
-      <h2>ログイン</h2>
-      <p class="title_border">会員の方はこちらからログイン</p>
+      <h1>Log In</h1>
+      <p class="form-footer"><%= link_to 'ゲストの方はこちらをクリック', public_users_guest_sign_in_path, class: "sign-button", method: :post %></p>
 
       <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field form-item">
-      <%= f.label :メールアドレス %>
+      <%= f.label :Email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
 
       <div class="field form-item">
-      <%= f.label :パスワード %>
+      <%= f.label :Password %>
       <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
 
       <div class="actions button-panel">
-      <%= f.submit "ログイン", class: 'button' %>
+      <%= f.submit "ログイン", class: 'sign-button' %>
       </div>
       <% end %>
 
-      <p class="pt-3 title_border">会員登録がお済みでない方</p>
-      <p><%= link_to "こちら", new_user_registration_path %>から新規登録を行ってください。</p>
+      <div class="form-footer">
+        <p>会員登録がお済みでない方</p>
+        <p><%= link_to "こちらから新規登録", new_user_registration_path, class: "header-button start" %></p>
+      </div>
 
     </div>
   </div>

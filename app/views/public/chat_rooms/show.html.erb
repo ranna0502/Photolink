@@ -1,18 +1,42 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-3'>
 
-    <p>チャットルームページ</p>
-
-    <div id='chat-messages'>
-      <!--render partial: 'chat_messages/chat_message', collectoin: @chat_messagesの省略形-->
-      <%= render @chat_messages %>
+<div class='container-field'>
+  <div class="row">
+    <div class='col-md-3 guide-content left'>
+      <!--guideの部分テンプレート引用-->
+      <%= render 'public/users/guide', user: @user, activity_point: @activity_point %>
     </div>
 
-    <form>
-      <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
-    </form>
 
+    <div class='col-md-6 main-content fixed'>
+      <div class="chat-room-show-page">
+        <nav class="navbar navbar-light chat-room__header">
+          <div class="index-button-box">
+            <%= link_to '一覧へ', users_matchings_path, class: " button index " %>
+          </div>
+
+          <div class="chat-room__partner">
+            <span class="chat-room__partner-name">
+              <%= @chat_room_user.nickname %>
+            </span>
+              <%= image_tag @chat_room_user.get_profile_image, class: "chat-room__partner-img" %>
+          </div>
+        </nav>
+        <div class="jscroll-div">
+          <div class="jscroll-container">
+            <div id='chat-messages' >
+              <!--render partial: 'chat_messages/chat_message', collectoin: @chat_messagesの省略形-->
+              <%= render @chat_messages %>
+              <%= paginate @chat_messages %>
+            </div>
+          </div>
+        </div>
+        <form class="chat-room__form">
+          <textarea data-behavior="chat_room_speaker" data-chat_room_id="<%= @chat_room.id %>" placeholder="メッセージを入力" class="chat-room__message-form_textarea"></textarea>
+        </form>
+      </div>
+    </div>
+    <div class='col-md-3 guide-content right'>
+      <%= render "chat_lists", users: @users %>
     </div>
   </div>
 </div>

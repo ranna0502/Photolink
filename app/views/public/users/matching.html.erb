@@ -1,18 +1,71 @@
-<div class="text-center">
-  <%= image_tag @user.get_profile_image, size:"100x100" %>
-</div>
-<div class="text-center" id="user-description">
-  <%= @user.nickname %>
-  <% if user_signed_in? && @user != current_user %>
-    <div id="follow_form">
-    <% if current_user.following?(@user) %>
-        <div id="liked" class="btn btn-default">依頼済み</div>
-    <% else %>
-      <%= render "follow" %>
-    <% end %>
+
+<div class='container-field px-5 px-sm-0'>
+  <div class="row mt-4">
+    <div class='col-md-3 offset-1 mt-5'>
+      <!--プロフィール画像-->
+      <%= link_to user_path(@user) do %>
+        <figure class="snip1344">
+          <%= image_tag @user.get_profile_image, class: "background" %>
+          <%= image_tag @user.get_profile_image, class: "profile" %>
+          <figcaption>
+            <h4>
+              <%= @user.nickname %>
+              <% if ActivityPoint.exists?(user_id: @user) %>
+                <span><%= @activity_point.activity_status_i18n %></span>
+              <% end %>
+              <% if user_signed_in? && @user != current_user %>
+                <% if current_user.following?(@user) %>
+                  <span>フォロー済み</span>
+                <% end %>
+              <% end %>
+            </h4>
+          </figcaption>
+        </figure>
+      <% end %>
+      <% if user_signed_in? && @user != current_user %>
+        <div id="follow_form" >
+          <% if current_user.following?(@user) %>
+            <div class="matching-button-box">
+              <%= link_to "やりとりを開始する", users_matchings_path, id: "liked", class: "button" %>
+            </div>
+          <% else %>
+            <div class="follow-button-box">
+              <%= render "follow" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <br>
-    <%= @user.introduction %>
-  </br>
+
+    <div class='col-md-6'>
+      <h2 class=" subtitle">REQUEST</h2>
+      <div class="sub-message">
+        <p class="profile-title"><strong><%= @user.nickname %>さん</strong> の要望</p>
+      </div>
+      <div class="profile">
+        <div class="profile-top">
+          <div class="profile-box">
+            <p class="profile-title">活動日時</p>
+            <p class="profile-body"><%= @activity_point.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+          </div>
+          <div class="profile-box">
+              <p class="profile-title">人数</p>
+              <p class="profile-body"><%= @activity_point.person %> 人</p>
+          </div>
+        </div>
+          <div class="profile-box">
+            <p class="profile-title">スポット</p>
+            <p class="profile-body area"><%= @activity_point.spot %></p>
+          </div>
+          <div class="profile-box">
+            <p class="profile-title">地点住所</p>
+            <p class="profile-body area"><%= @activity_point.prefecture %><%= @activity_point.address %></p>
+          </div>
+          <div class="profile-box">
+            <p class="profile-title">要望</p>
+            <p class="profile-body area"><%= @activity_point.request %></p>
+          </div>
+      </div>
+  </div>
 </div>
+
