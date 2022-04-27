@@ -29,6 +29,10 @@
 ## 設計書
 ### テーブル定義書
 https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM1KU/edit#gid=2145917830
+
+### アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1OARFfdhY1hkqcnZ23-DYdgLzRSGo1PPFX_vMndFzvt4/edit#gid=2133469642
+
 ### ER図
 ![image](https://user-images.githubusercontent.com/80334879/165627532-73f06ca2-108e-4cf9-a406-bfff98b293f5.png)
 
@@ -42,5 +46,8 @@ https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+### canva(ロゴ作成)
+https://www.canva.com/
+
+### photo-ac(フリー素材写真)
+https://www.photo-ac.com/
