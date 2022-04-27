@@ -27,7 +27,7 @@
 ・観光スポットでの写真撮影時</br>
 
 ## 設計書
-
+https://viewer.diagrams.net/?page-id=SLqFKzOqfenehOdfg94I&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=SLqFKzOqfenehOdfg94I#G1WcmnKKlGj0tZaqm_z8qIGQibEV8etx6V
 
 ## 開発環境
 - OS：Linux(CentOS)
