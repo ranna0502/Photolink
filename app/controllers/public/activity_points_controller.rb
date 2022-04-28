@@ -46,12 +46,14 @@ class Public::ActivityPointsController < ApplicationController
     @activity_point.user_id = current_user.id
     activity_point_count = ActivityPoint.where(user_id: current_user.id).count #投稿数をカウント
     if activity_point_count < 1
-      @activity_point.save
-      redirect_to user_path(current_user), notice: "活動登録しました"
-    elsif
-      redirect_to new_activity_point_path, notice: "活動登録は１回までです。地点を変更する場合は編集より行ってください"
+      if @activity_point.save
+        redirect_to user_path(current_user), notice: "活動登録しました"
+      else
+        @user = current_user
+        render 'new', alert: "活動地点の保存に失敗しました"
+      end
     else
-      render 'new', alert: "活動地点の保存に失敗しました"
+      redirect_to new_activity_point_path, notice: "活動登録は１回までです。地点を変更する場合は編集より行ってください"
     end
   end
 
