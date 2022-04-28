@@ -6,6 +6,7 @@
 
 // ヘッダー、ヘッダー,はじめる,ログインなどのボタンの雛形、トップページ、アバウトページ　関連
 @import "layouts/_header";
+@import "layouts/_footer";
 @import "layouts/top";
 @import "layouts/about";
 
@@ -32,9 +33,6 @@
   box-sizing:border-box;
 }
 
-main {
-  height: 2100px;
-}
 
 body{
   background: #faf9f6;

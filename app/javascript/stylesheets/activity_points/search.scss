@@ -1,3 +1,13 @@
+// レスポンシブ対応
+// ブレイクポイント
+$mb1: 1441px;
+$mb2: 2560px;
+// @media 拡張ディスプレイ
+@mixin display{
+  @media screen and (min-width: $mb1) and (max-width: $mb2) {
+    @content;
+  }
+}
 
 $sub-color: #365b6d;
 
@@ -66,4 +76,9 @@ $sub-color: #365b6d;
   margin-left: 20%;
   padding: 10px;
   background-color: #f6f3e8;
+
+    @include display{
+      margin-left: 15%;
+    }
+
 }

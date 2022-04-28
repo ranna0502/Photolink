@@ -12,11 +12,13 @@
   </head>
 
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
-    <%= render "layouts/header" %>
-      <main>
-        <%= yield %>
-      </main>
-    <%= render 'layouts/footer' %>
+    <div class="footerFixed">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
+      <%= render "layouts/header" %>
+        <main>
+          <%= yield %>
+        </main>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
