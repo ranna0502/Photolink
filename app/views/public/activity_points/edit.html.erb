@@ -50,7 +50,10 @@
           <div class="col-md-9"><%= f.text_area :request, class: "profile-text_area form-control request" %></div>
         </div>
         <div  class="form-group d-flex">
-          <div class="col-md-2 offset-md-10">
+          <div class="col-md-2 offset-8 danger-button-box">
+            <%= link_to "Delete", @activity_point, method: :delete, data: { confirm: '本当に消しますか？' }, class: 'button danger' %>
+          </div>
+          <div class="col-md-2">
             <%= f.submit "Update", class: 'button update' %>
           </div>
         </div>
