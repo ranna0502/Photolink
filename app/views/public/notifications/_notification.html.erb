@@ -9,22 +9,7 @@
       <% case notification.action %>
         <% when 'follow' then %>
           <%= "あなたをフォローしました" %>
-        <% when 'chat_message' then %>
-          <% if notification.chat_message.user_id == visited.id %>
-            <%= link_to "あなたの投稿", notification.chat_message, style: "font-weight: bold;" %>
-          <% else %>
-            <span>
-              <%= link_to chat_message_path(notification.chat_message) do %>
-                <%= image_tag avatar_url(notification.chat_message.user).to_s, class: "icon_mini" %>
-                <strong><%= notification.chat_message.user.name + 'さんの投稿' %></strong>
-              <% end %>
-              <%= "にコメントしました" %>
-            </span>
-          <% end %>
         <% end %>
-        <p class="text-muted mb-0">
-          <%= ChatMessage.find_by(id: notification.chat_message_id)&.chat_message %>
-        </p>
     </span>
 
   <div class="small text-muted text-right">
