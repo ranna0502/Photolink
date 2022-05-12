@@ -11,13 +11,23 @@ $text-color: #768a92;
   z-index: 40;
   background:#00dafceb;
 
-  & .navbar{
-    line-height: 40px;
-  }
-
   & .container-fluid{
     height: 50px;
   }
+}
+
+.header-logo{
+    color: #fff;
+    font-size: 23px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    transition:all .5s ease-in-out;
+
+    &:hover{
+      color: #f97a54;
+      text-decoration: none;
+    }
+
 }
 
 .FlashMessage{
