@@ -2,10 +2,13 @@
   <div class="row firstview">
     <div class="col-md-6 firstview-left-box">
       <div class="firstview-text-box">
-        <%= image_tag 'Photolink.png'%>
+        <%= image_tag 'Photolink.png' %>
       </div>
       <div class="start-button-box">
-        <%= link_to 'はじめる', new_user_session_path, class: "header-button start" %>
+        <%= link_to '登録してはじめる', new_user_session_path, class: "header-button start" %>
+      </div>
+      <div class="start-button-box">
+        <%= link_to 'Photolinkについてもっと知りたい方はこちら', about_path, class: "sub-link" %>
       </div>
     </div>
     <div class="col-md-6 firstview-right-box">

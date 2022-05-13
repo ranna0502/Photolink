@@ -21,12 +21,12 @@
         </div>
         <div class="form-group row mb-4">
           <div class="col-md-3"><%= f.label :スポット %></div>
-          <div class="col-md-9"><%= f.text_field :spot, class: "form-control spot" %></div>
+          <div class="col-md-9"><%= f.text_field :spot, placeholder: "例)スカイツリー", class: "form-control spot" %></div>
         </div>
         <div class="form-group row mb-4">
           <div class="col-md-3"><%= f.label :住所 %></div>
           <div class="col-md-3"><%= f.collection_select :prefecture, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %></div>
-          <div class="col-md-6"><%= f.text_field :address, class: "form-control address" %></div>
+          <div class="col-md-6"><%= f.text_field :address, placeholder: "例)○○市○○区○○町", class: "form-control address" %></div>
         </div>
         <div class="form-group row mb-4">
           <div class="col-md-3"><%= f.label :活動ステータス %></div>
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group row mb-4">
           <div class="col-md-3"><%= f.label :要望 %></div>
-          <div class="col-md-9"><%= f.text_area :request, class: "profile-text_area form-control request" %></div>
+          <div class="col-md-9"><%= f.text_area :request, placeholder: "撮影時の要望がある場合、記入してください", class: "profile-text_area form-control request" %></div>
         </div>
         <div  class="form-group d-flex">
           <div class="col-md-2 offset-md-10">
