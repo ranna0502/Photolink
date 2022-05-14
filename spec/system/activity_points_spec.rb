@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe '投稿のテスト' do
-  # let!(:activity_point) { create(:activity_point, time:'11:30',date:'2022/1/1',person:'2',spot:'spot',prefecture:'北海道',address:'address',activity_status:'1',request:'request') }
+  let!(:activity_point) { FactoryBot.create(:activity_point) }
   describe 'トップ画面(top_path)のテスト' do
     before do
       visit root_path

@@ -15,6 +15,7 @@ scope module: :public do
 
   resources :chat_rooms, only: [:create, :show]
   resources :notifications, only: [:index]
+  
   get '/activity_points' => 'activity_points#search'
   resources :activity_points, only: [:new, :create, :edit, :update, :destroy]
   get '/activity_points/user_record' => 'activity_points#user_record'
