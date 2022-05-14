@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :activity_point do
-    id { Faker::Number.between(from: 1, to: 100) } #=> 1 ~ 1000
-    user_id { Faker::Number.between(from: 1, to: 100) } #=> 1 ~ 1000
+    association :user
     time { '11:30' } #=> 00:00:00
     date { '2022/1/1' } #=> 2022/01/01 ~ 2030/12/30
     person { Faker::Number.between(from: 1, to: 20)} #=> 1 ~ 20
