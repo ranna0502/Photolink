@@ -3,7 +3,7 @@
     <div class="form-wrapper col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
 
       <h1>Log In</h1>
-      <p class="form-footer"><%= link_to 'ゲストの方はこちらをクリック', public_users_guest_sign_in_path, class: "sign-button", method: :post %></p>
+      <p class="form-footer"><%= link_to 'ゲストの方はこちらをクリック', public_users_guest_sign_in_path, class: "sub-link", method: :post %></p>
 
       <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field form-item">
