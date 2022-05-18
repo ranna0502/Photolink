@@ -9,12 +9,12 @@ describe '投稿のテスト' do
   # allow(controller)
   #   .to receive(:current_user)
   #   .and_return(user)
-  before do
-    visit new_user_session_path
-    fill_in 'user[email]', with: user.email
-    fill_in 'user[password]', with: user.password
-    click_button 'ログイン'
-  end
+  # before do
+  #   visit new_user_session_path
+  #   fill_in 'user[email]', with: user.email
+  #   fill_in 'user[password]', with: user.password
+  #   click_button 'ログイン'
+  # end
 
   describe 'トップ画面(top_path)のテスト' do
     before do
