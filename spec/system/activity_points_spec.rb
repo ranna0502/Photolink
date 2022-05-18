@@ -2,8 +2,20 @@
 
 require 'rails_helper'
 
+
 describe '投稿のテスト' do
   let!(:activity_point) { FactoryBot.create(:activity_point) }
+  let!(:user) { FactoryBot.create(:user) }
+  # allow(controller)
+  #   .to receive(:current_user)
+  #   .and_return(user)
+  # before do
+  #   visit new_user_session_path
+  #   fill_in 'user[email]', with: user.email
+  #   fill_in 'user[password]', with: user.password
+  #   click_button 'ログイン'
+  # end
+
   describe 'トップ画面(top_path)のテスト' do
     before do
       visit root_path
@@ -32,6 +44,7 @@ describe '投稿のテスト' do
   end
   describe '活動地点の登録画面のテスト' do
     before do
+      sign_in user
       visit new_activity_point_path
     end
     context '投稿処理に関するテスト' do
@@ -45,12 +58,13 @@ describe '投稿のテスト' do
         choose 'activity_point_activity_status_photographer'
         fill_in 'activity_point[request]', with:  Faker::Lorem.characters(number:30)
         click_button '登録する'
+        expect(page).to have_current_path user_path(user)
         expect(page).to have_content '活動登録しました'
       end
       it '投稿に失敗する' do
         click_button '登録する'
 	      expect(page).to have_content 'エラー'
-	      expect(current_path).to eq('/activity_status')
+	      expect(current_path).to eq('/activity_points')
 	    end
 	    it '投稿後のリダイレクト先は正しいか' do
         fill_in 'activity_point[time]', with: '11:30'
@@ -62,7 +76,7 @@ describe '投稿のテスト' do
         choose 'activity_point_activity_status_photographer'
         fill_in 'activity_point[request]', with:  Faker::Lorem.characters(number:30)
         click_button '登録する'
-        expect(page).to have_current_path user_path(@user)
+        expect(page).to have_current_path user_path(user)
 	    end
     end
   end
