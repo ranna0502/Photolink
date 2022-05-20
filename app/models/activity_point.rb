@@ -1,5 +1,4 @@
 class ActivityPoint < ApplicationRecord
-
   belongs_to :user
   # ライブラリの読み込み
   include JpPrefecture

@@ -7,7 +7,7 @@ class ChatMessageBroadcastJob < ApplicationJob
 
   private
 
-    def render_chat_message(chat_message)
-      ApplicationController.renderer.render(partial: 'public/chat_messages/chat_message', locals: { chat_message: chat_message, current_user: chat_message.user })
-    end
+  def render_chat_message(chat_message)
+    ApplicationController.renderer.render(partial: 'public/chat_messages/chat_message', locals: { chat_message: chat_message, current_user: chat_message.user })
+  end
 end

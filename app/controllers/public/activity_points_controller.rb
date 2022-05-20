@@ -12,7 +12,6 @@ class Public::ActivityPointsController < ApplicationController
     @activity_point = @user.activity_points.last
   end
 
-
   def edit
     @activity_point = ActivityPoint.find(params[:id])
     @user = current_user
@@ -21,7 +20,6 @@ class Public::ActivityPointsController < ApplicationController
       redirect_to user_path(@user), alert: '編集できません'
     end
   end
-
 
   def update
     @activity_point = ActivityPoint.find(params[:id])
@@ -33,18 +31,16 @@ class Public::ActivityPointsController < ApplicationController
     end
   end
 
-
   def destroy
     @activity_point = ActivityPoint.find(params[:id])
     @activity_point.destroy
     redirect_to new_activity_point_path
   end
 
-
   def create
     @activity_point = ActivityPoint.new(activity_point_params)
     @activity_point.user_id = current_user.id
-    activity_point_count = ActivityPoint.where(user_id: current_user.id).count #投稿数をカウント
+    activity_point_count = ActivityPoint.where(user_id: current_user.id).count # 投稿数をカウント
     if activity_point_count < 1
       if @activity_point.save
         redirect_to user_path(current_user), notice: "活動登録しました"
@@ -57,7 +53,6 @@ class Public::ActivityPointsController < ApplicationController
     end
   end
 
-
   def search
     @user = current_user
     @activity_point = ActivityPoint.find_by(user_id: @user)
@@ -67,7 +62,6 @@ class Public::ActivityPointsController < ApplicationController
     @activity_points = @search.result(distinct: true).page(params[:page]).per(5)
   end
 
-
   def search_matchers
     # 検索オブジェクト
     @search = ActivityPoint.ransack(params[:q])
@@ -75,16 +69,13 @@ class Public::ActivityPointsController < ApplicationController
     @activity_points_result = @search.result(distinct: true)
   end
 
-
-
-
   private
 
   def activity_point_params
-    params.require(:activity_point).permit(:date,:time,:person,:spot,:prefecture,:address,:request,:activity_status,:latitude,:longitude)
+    params.require(:activity_point).permit(:date, :time, :person, :spot, :prefecture, :address, :request, :activity_status, :latitude, :longitude)
   end
 
-# ログインユーザーがデータを登録しているか確認
+  # ログインユーザーがデータを登録しているか確認
   def set_activity_point
     unless ActivityPoint.exists?(user_id: current_user.id)
       redirect_to new_activity_point_path, notice: "まずは活動地点を登録してみましょう！"
@@ -95,10 +86,7 @@ class Public::ActivityPointsController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.nickname == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
-
-
-
 end
