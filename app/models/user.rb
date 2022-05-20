@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:twitter, :facebook]
 
   has_one_attached :profile_image
   has_many :activity_points
@@ -24,11 +25,32 @@ class User < ApplicationRecord
 
   # ゲストログインメソッド
   def self.guest
-    find_or_create_by!(last_name: 'guest', first_name: 'guest', nickname: 'guestuser', email: 'guest@example.com') do |user|
+    find_or_create_by!(nickname: 'guestuser', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.nickname = "guestuser"
-      user.last_name = "guest"
-      user.first_name = "guest"
+    end
+  end
+
+  # OAuth認証
+  class << self
+    def find_or_create_for_oauth(auth)
+      find_or_create_by!(email: auth.info.email) do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.email = auth.info.email
+        user.nickname = auth.info.name
+        password = Devise.friendly_token[0..5]
+        logger.debug password
+        user.password = password
+      end
+    end
+
+    def new_with_session(params, session)
+      if user_attributes = session['devise.user_attributes']
+        new(user_attributes) { |user| user.attributes = params }
+      else
+        super
+      end
     end
   end
 

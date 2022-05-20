@@ -5,8 +5,13 @@ class Public::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # devise :omniauthable, omniauth_providers: [:twitter]
 
   # You should also create an action method in this controller like this:
-  # def twitter
-  # end
+  def twitter
+    callback
+  end
+
+  def facebook
+    callback
+  end
 
   # More info at:
   # https://github.com/heartcombo/devise#omniauth
@@ -20,6 +25,19 @@ class Public::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # def failure
   #   super
   # end
+
+    private
+
+    def callback
+      @user = User.find_or_create_for_oauth(request.env['omniauth.auth'])
+
+      if @user.persisted?
+        sign_in_and_redirect @user
+      else
+        session['devise.user_attributes'] = @user.attributes
+        redirect_to new_user_registration_url
+      end
+    end
 
   # protected
 

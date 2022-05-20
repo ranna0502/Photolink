@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # エンドユーザー用
   # URL /users/sign_in ...
   devise_for :users, skip: [:passwords], controllers: {
+    omniauth_callbacks: 'public/omniauth_callbacks',
     registrations: "public/registrations",
     sessions: 'public/sessions',
   }
