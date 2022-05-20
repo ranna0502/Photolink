@@ -17,8 +17,6 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
   validates :nickname, presence: true
   validates :email, presence: true
   validates :introduction, length: { maximum: 255 }
@@ -41,7 +39,7 @@ class User < ApplicationRecord
         user.nickname = auth.info.name
         password = Devise.friendly_token[0..5]
         logger.debug password
-        user.password = password
+        user.encrypted_password = password
       end
     end
 
