@@ -68,7 +68,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
     user_path(resource)
   end
 
-  def configure_permitted_parameters # sign_upの際にlast_name〜phone_numberのデータ操作を許可
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :nickname])
+  def configure_permitted_parameters # sign_upの際にデータ操作を許可
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
   end
 end

@@ -35,6 +35,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop-airbnb'
+  gem 'dotenv-rails'
+
 end
 
 group :development do
@@ -64,12 +66,14 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+gem 'omniauth-rails_csrf_protection'
 gem 'enum_help'
 gem 'kaminari'
 gem 'ransack'
 gem 'jp_prefecture'
 
-gem 'dotenv-rails'
+
 group :production do
   gem 'mysql2'
 end
+
