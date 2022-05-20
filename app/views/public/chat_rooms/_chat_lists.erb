@@ -1,20 +1,20 @@
-  <div class="images-box">
-    <div class="img-box-title">
-      <span class="_span">User list</span>
-    </div>
-    <div class="jscroll-div users_list">
-      <div class="jscroll-container">
-        <% users.each do |user| %>
-          <!--チャットルームを作成するリンク-->
-            <%= link_to chat_rooms_path(params: { user_id: user.id }), class: "chat-link", method: :post do %>
-              <div class="img-box">
-                <%= image_tag user.get_profile_image, class: "img" %>
-                <span><%= user.nickname %></span>
-              </div>
-            <% end %>
-        <% end %>
-        <%= paginate @users %>
-      </div>
+<div class="images-box">
+  <div class="img-box-title">
+    <span class="_span">User list</span>
+  </div>
+  <div class="jscroll-div users_list">
+    <div class="jscroll-container">
+      <% users.each do |user| %>
+        <!--チャットルームを作成するリンク-->
+          <%= link_to chat_rooms_path(params: { user_id: user.id }), class: "chat-link", method: :post do %>
+            <div class="img-box">
+              <%= image_tag user.get_profile_image, class: "img" %>
+              <span><%= user.nickname %></span>
+            </div>
+          <% end %>
+      <% end %>
+      <%= paginate @users %>
     </div>
   </div>
+</div>
 
