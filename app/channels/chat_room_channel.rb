@@ -1,5 +1,4 @@
 class ChatRoomChannel < ApplicationCable::Channel
-
   def subscribed
     stream_from "chat_room_channel"
   end
@@ -15,5 +14,4 @@ class ChatRoomChannel < ApplicationCable::Channel
       chat_room_id: data['chat_room_id']
     )
   end
-
 end

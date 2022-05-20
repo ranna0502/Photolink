@@ -2,7 +2,6 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   before_action :other_user, only: [:edit]
 
-
   def show
     @users = Kaminari.paginate_array(current_user.matchers).page(params[:page]).per(30)
     @user = User.find(params[:id])
@@ -37,26 +36,23 @@ class Public::UsersController < ApplicationController
     @activity_point = ActivityPoint.find_by(user_id: @user)
   end
 
-
-
-  def unsubscribe #退会確認画面表示
+  def unsubscribe # 退会確認画面表示
   end
 
-  def withdraw #入退会ステータス更新
+  def withdraw # 入退会ステータス更新
     @user = current_user
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path, notice: "退会処理を実行いたしました"
   end
 
-
   private
 
-# URLを直接入力されても遷移しない
+  # URLを直接入力されても遷移しない
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.nickname == "guestuser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 
@@ -67,10 +63,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
-
-
-    def user_params
-      params.require(:user).permit(:profile_image,:last_name,:first_name,:nickname,:introduction,:is_deleted,:email,:encrypted_password)
-    end
-
+  def user_params
+    params.require(:user).permit(:profile_image, :last_name, :first_name, :nickname, :introduction, :is_deleted, :email, :encrypted_password)
+  end
 end
