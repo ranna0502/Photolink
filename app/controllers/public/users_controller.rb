@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+      @user = User.find(params[:id])
     @activity_point = ActivityPoint.find_by(user_id: @user)
   end
 

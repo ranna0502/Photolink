@@ -35,7 +35,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rubocop-airbnb'
-  gem 'dotenv-rails'
 
 end
 
@@ -72,7 +71,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'jp_prefecture'
 
-
+gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
