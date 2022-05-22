@@ -94,6 +94,18 @@ $text-color: #768a92;
       }
     }
 
+    &.search{
+      padding: 20px 20px;
+      background: #f97a54;
+      color: #faf9f6;
+      line-height: 240px;
+
+      &:hover{
+        color: #fdfdfd;
+        background: rgb(43 158 211);
+      }
+    }
+
 
 }
 

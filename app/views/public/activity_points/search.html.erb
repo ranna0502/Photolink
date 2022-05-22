@@ -24,7 +24,7 @@
                 <%= f.radio_button :activity_status_eq, 1 %>モデル
               </div>
               <div class="col-12">
-                <%= f.submit '検索', class: 'button' %>
+                <%= f.submit '🔍　この条件で検索！', class: 'button' %>
               </div>
             <% end %>
             </div>
@@ -37,35 +37,50 @@
             <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>
           </div>
 
-            <div class="jscroll-div">
+            <div class="jscroll-div search">
               <div class='jscroll-container table table-hover table-inverse'>
-                <div class="usersearch-container">
                     <% @activity_points.each do |activity_point| %>
-                      <div class="usersearch-box">
-                        <div class="usersearch img">
+                    <div class="row searchuser-box">
+                        <div class="col-2 ml-5 my-5">
                           <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
                         </div>
-                        <div class="usersearch section">
-                          <%= link_to matching_user_path(activity_point.user) do %>
-                            <%= activity_point.user.nickname %>
-                          <% end %>
+                        <div class="col-7 my-5  section">
+                          <p>
+                            <strong>
+                              <%= activity_point.user.nickname %>
 
-                          <!--マッチングしているユーザーのみアイコン表示-->
-                          <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
-                            <i class="fas fa-solid fa-hand-holding-heart"></i>
-                          <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
-                          <% elsif activity_point.user.following?(current_user) %>
-                            <i class="fas fa-solid fa-hand-holding"></i>
-                          <% else %>
-                          <% end %>
+                              <!--マッチングしているユーザーのみアイコン表示-->
+                              <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
+                                <i class="fas fa-solid fa-hand-holding-heart"></i>
+                                マッチング済み
+                              <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
+                              <% elsif activity_point.user.following?(current_user) %>
+                                <i class="fas fa-solid fa-hand-holding"></i>
+                                フォロー依頼が届いています
+                              <% else %>
+                                <!--どちらでもない場合は空白-->
+                              <% end %></br>
 
-                          <%= activity_point.date.strftime('%m月%d日') %>  <%= activity_point.time.strftime('%H:%M') %>
-                          <%= activity_point.spot %>
-                          <%= activity_point.prefecture %><%= activity_point.address %>
+                            </strong>
+                          </p>
+                          <p>
+                            <span class="pr-3">活動日時：</span><%= activity_point.date.strftime('%m月%d日') %>  <%= activity_point.time.strftime('%H:%M') %></br>
+                          </p>
+                          <p>
+                            <span class="pr-3">スポット：</span><%= activity_point.spot %></br>
+                          </p>
+                          <p>
+                            <span class="pr-3">活動住所：</span><%= activity_point.prefecture %><%= activity_point.address %></br>
+                          </p>
+                          <p>
+                            <span class="pr-5">要望：</span><p><%= activity_point.request %></p>
+                          </p>
                         </div>
-                      </div>
+                        <div class="col-2 my-5">
+                          <%= link_to '詳細画面へ', matching_user_path(activity_point.user), class: "header-button search" %>
+                        </div>
+                    </div>
                     <% end %>
-                </div>
               <%= paginate @activity_points %>
             </div>
         </div>
