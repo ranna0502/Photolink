@@ -36,38 +36,37 @@
             <div><%=  sort_link @search, :date, "日付順", class: 'button sort' %></div>
             <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>
           </div>
-            <div class="jscroll-div">
-            <table class='jscroll-container table table-hover table-inverse'>
-              <tbody>
-                <% @activity_points.each do |activity_point| %>
-                  <tr>
-                    <td>
-                      <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
-                    </td>
-                    <td>
-                      <%= link_to matching_user_path(activity_point.user) do %>
-                        <%= activity_point.user.nickname %>
-                      <% end %>
-                    </td>
-                    <td>
-                      <!--マッチングしているユーザーのみアイコン表示-->
-                      <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
-                        <i class="fas fa-solid fa-hand-holding-heart"></i>
-                      <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
-                      <% elsif activity_point.user.following?(current_user) %>
-                        <i class="fas fa-solid fa-hand-holding"></i>
-                      <% else %>
 
-                      <% end %>
-                    </td>
-                    <td><%= activity_point.date.strftime('%m月%d日') %>  <%= activity_point.time.strftime('%H:%M') %></td>
-                    <td><%= activity_point.spot %></td>
-                    <td><%= activity_point.prefecture %><%= activity_point.address %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-            <%= paginate @activity_points %>
+            <div class="jscroll-div">
+              <div class='jscroll-container table table-hover table-inverse'>
+                <div class="usersearch-container">
+                    <% @activity_points.each do |activity_point| %>
+                      <div class="usersearch-box">
+                        <div class="usersearch img">
+                          <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
+                        </div>
+                        <div class="usersearch section">
+                          <%= link_to matching_user_path(activity_point.user) do %>
+                            <%= activity_point.user.nickname %>
+                          <% end %>
+
+                          <!--マッチングしているユーザーのみアイコン表示-->
+                          <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
+                            <i class="fas fa-solid fa-hand-holding-heart"></i>
+                          <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
+                          <% elsif activity_point.user.following?(current_user) %>
+                            <i class="fas fa-solid fa-hand-holding"></i>
+                          <% else %>
+                          <% end %>
+
+                          <%= activity_point.date.strftime('%m月%d日') %>  <%= activity_point.time.strftime('%H:%M') %>
+                          <%= activity_point.spot %>
+                          <%= activity_point.prefecture %><%= activity_point.address %>
+                        </div>
+                      </div>
+                    <% end %>
+                </div>
+              <%= paginate @activity_points %>
             </div>
         </div>
   </div>

@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable
+         :omniauthable, omniauth_providers: [:twitter, :facebook]
 
   has_one_attached :profile_image
   has_many :activity_points
@@ -30,23 +30,27 @@ class User < ApplicationRecord
   end
 
   # OAuth認証
-
-  def self.find_for_oauth(auth)
-    user = User.where(uid: auth.uid, provider: auth.provider).first
-
-    unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    User.dummy_email(auth),
-        nickname: auth.name,
-        password: Devise.friendly_token[0, 20]
-      )
+   class << self
+    def find_or_create_for_oauth(auth)
+      find_or_create_by!(email: auth.info.email) do |user|
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.nickname = auth.info.name
+        user.email = auth.info.email
+        password = Devise.friendly_token[0..5]
+        logger.debug password
+        user.encrypted_password = password
+      end
     end
 
-    user
+    def new_with_session(params, session)
+      if user_attributes = session['devise.user_attributes']
+        new(user_attributes) { |user| user.attributes = params }
+      else
+        super
+      end
+    end
   end
-
 
 
   # 退会済みのユーザーがログインできないメソッド
@@ -91,10 +95,5 @@ class User < ApplicationRecord
     end
   end
 
-  private
-
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
-  end
 
 end
