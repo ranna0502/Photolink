@@ -32,14 +32,14 @@ class User < ApplicationRecord
   # OAuth認証
    class << self
     def find_or_create_for_oauth(auth)
-      find_or_create_by!(email: auth.info.email) do |user|
+      find_or_create_by!(email: User.dummy_email(auth)) do |user|
         user.provider = auth.provider
         user.uid = auth.uid
-        user.nickname = auth.info.name
-        user.email = auth.info.email
+        user.nickname = User.rondom_name
+        user.email = User.dummy_email(auth)
         password = Devise.friendly_token[0..5]
         logger.debug password
-        user.encrypted_password = password
+        user.password = password
       end
     end
 
@@ -95,5 +95,15 @@ class User < ApplicationRecord
     end
   end
 
+
+  private
+
+    def self.dummy_email(auth)
+      "#{auth.uid}-#{auth.provider}@example.com"
+    end
+
+    def self.rondom_name
+      "#{((0..9).to_a + ("a".."z").to_a).sample(10).join}"
+    end
 
 end
