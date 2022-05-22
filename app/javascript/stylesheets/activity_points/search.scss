@@ -40,28 +40,27 @@ $sub-color: #365b6d;
 }
 
 
-.table {
-    width: 100%;
-    margin: 0px;
-    color: #212529;
-    background-color: #fff;
-    font-size: 13px;
-    border-radius: 4px;
+.usersearch-container {
+}
 
-  & td {
-      height: 100px;
-      line-height: 100px;
-      padding: 0rem 0.75rem;
-      border-top: 1px solid #F0F0F0;
+.usersearch-box{
+  display: flex;
+  height: 200px;
+}
+
+.usersearch{
+  &.img{
+    width: 20%;
+  }
+  &.section{
+    width: 80%;
   }
 }
 
-
 .table-img{
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   -o-object-fit: cover;
-  border-radius: 50%;
   -o-object-position: -20px 0px;
   margin: 5px 0px 10px 10px;
 }
