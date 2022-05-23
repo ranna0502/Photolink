@@ -1,9 +1,8 @@
 <div class='container'>
   <div class='row d-flex justify-content-around'>
-    <div class="form-wrapper col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
+    <div class="form-wrapper col-4 sign-field mt-5">
 
       <h1>Log In</h1>
-      <p class="form-footer"><%= link_to 'ゲストの方はこちらをクリック', public_users_guest_sign_in_path, class: "sub-link", method: :post %></p>
 
       <%= form_with model: @user, url: user_session_path do |f| %>
       <div class="field form-item">
@@ -16,16 +15,19 @@
       <%= f.password_field :password, autocomplete: "current-password" %>
       </div>
 
-      <div class="actions button-panel">
       <%= f.submit "ログイン", class: 'sign-button' %>
-      </div>
       <% end %>
 
-      <div class="form-footer">
-        <p>会員登録がお済みでない方</p>
+      <div class="text-center d-block mt-3">
+        <p>-login with-</p>
+        <div class="mb-3"><%= link_to 'ゲストの方はこちらからログイン', public_users_guest_sign_in_path, class: "sign-button small", method: :post %></div>
+        <div class="mb-3"><%= link_to 'Twitterでログインする', user_twitter_omniauth_authorize_path, class: "sign-button sns-twitter", method: :post %></div>
+        <div class="mb-3"><%= link_to 'Facebookでログインする', user_facebook_omniauth_authorize_path, class: "sign-button sns-facebook", method: :post %></div>
+
+        <p>-会員登録がお済みでない方-</p>
         <p><%= link_to "こちらから新規登録", new_user_registration_path, class: "header-button start" %></p>
-        <!--< render "public/shared/links" %>-->
       </div>
+
     </div>
   </div>
 </div>

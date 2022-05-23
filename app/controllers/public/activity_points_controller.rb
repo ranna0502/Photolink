@@ -60,6 +60,7 @@ class Public::ActivityPointsController < ApplicationController
     @search = ActivityPoint.ransack(params[:q])
     # 検索結果
     @activity_points = @search.result(distinct: true).page(params[:page]).per(5)
+    #binding.pry
   end
 
   def search_matchers

@@ -107,6 +107,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (2.0.3)
     ffi (1.15.5)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -307,9 +308,6 @@ GEM
     sqlite3 (1.4.2)
     thor (1.2.1)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
@@ -344,6 +342,7 @@ DEPENDENCIES
   enum_help
   factory_bot_rails
   faker
+  geocoder
   jbuilder (~> 2.7)
   jp_prefecture
   kaminari
@@ -364,7 +363,6 @@ DEPENDENCIES
   sass-rails (>= 6)
   spring
   sqlite3 (~> 1.4)
-  turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
   webpacker (~> 5.0)
