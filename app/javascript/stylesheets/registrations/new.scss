@@ -42,17 +42,12 @@ $text-color: #365b6d;
 
 
 
-.button-panel {
-  margin: 10px auto;
-  width: 70%;
-
-  & .sign-button {
+  .sign-button {
     background: #f97a54;
     border: none;
     color: #fff;
     cursor: pointer;
     height: 50px;
-    font-family: 'Open Sans', sans-serif;
     font-size: 1.2em;
     letter-spacing: 0.05em;
     text-align: center;
@@ -64,14 +59,43 @@ $text-color: #365b6d;
     &:hover {
       background: #ff5b2a;
     }
-  }
-}
 
+    &.small{
+    text-decoration: none;
+    background: #faf9f6;
+    border: solid 1px #b3bcb396;
+    color: #365b6c;
+    font-size: 1em;
+    padding: 5px;
+
+      &:hover {
+        border: solid 1px rgb(179 188 179);
+        color: #294654;
+      }
+    }
+
+    &.sns-twitter{
+      text-decoration: none;
+      background: #3cb7f8;
+      border: solid 1px rgb(60 183 248);
+      color: #ffffff;
+      font-size: 15px;
+      padding: 5px 40px;
+    }
+
+    &.sns-facebook{
+      text-decoration: none;
+      background: #3cb7f8;
+      border: solid 1px rgb(60 183 248);
+      color: #ffffff;
+      font-size: 15px;
+      padding: 5px 32px;
+    }
+
+  }
 
 
 .form-footer {
-  font-size: 1em;
-  padding: 2em 0;
   text-align: center;
 }
 
@@ -92,4 +116,9 @@ $text-color: #365b6d;
         color: rgba(255, 255, 255, 0.85);
         box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
       }
+}
+
+.sign-field{
+    background-color: darkgray;
+    border-radius: 20px;
 }

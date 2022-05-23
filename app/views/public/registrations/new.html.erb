@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row d-flex justify-content-around'>
-    <div class="form-wrapper col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0">
+    <div class="form-wrapper col-6 sign-field mt-5">
 
       <h1>Sign Up</h1>
       <p class="form-footer">こちらから新規登録お願い致します</p>
@@ -33,11 +33,15 @@
       </div>
       <% end %>
 
-      <div class="form-footer">
-        <p >既にご登録済みの方</p>
+      <div class="text-center d-block mt-3">
+        <p>-login with-</p>
+        <div class="mb-3"><%= link_to 'ゲストの方はこちらからログイン', public_users_guest_sign_in_path, class: "sign-button small", method: :post %></div>
+        <div class="mb-3"><%= link_to 'Twitterでログインする', user_twitter_omniauth_authorize_path, class: "sign-button sns-twitter", method: :post %></div>
+        <div class="mb-3"><%= link_to 'Facebookでログインする', user_facebook_omniauth_authorize_path, class: "sign-button sns-facebook", method: :post %></div>
+
+        <p >-既にご登録済みの方-</p>
         <p><%= link_to "こちらからログイン", new_user_session_path, class: "header-button start" %></p>
       </div>
-
     </div>
   </div>
 </div>

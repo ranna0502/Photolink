@@ -3,6 +3,10 @@ class ActivityPoint < ApplicationRecord
   # ライブラリの読み込み
   include JpPrefecture
 
+  # geocoding
+  geocoded_by :address
+  after_validation :geocode
+
   validates :time, presence: true
   validates :date, presence: true
   validates :person, presence: true
@@ -11,6 +15,7 @@ class ActivityPoint < ApplicationRecord
   validates :address, presence: true
   validates :activity_status, presence: true
   validates :request, presence: true, length: { maximum: 200 }
+
 
   enum activity_status: { photographer: 0, subject: 1 }
 end
