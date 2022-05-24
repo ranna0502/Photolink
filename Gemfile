@@ -71,6 +71,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'jp_prefecture'
 gem 'geocoder'
+gem 'line-bot-api'
 
 gem 'dotenv-rails'
 group :production do
