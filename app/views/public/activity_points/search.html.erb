@@ -28,32 +28,25 @@
               </div>
             <% end %>
 
-            <h2>gmap</h2>
+            <h2>map</h2>
             <div id='map'></div>
-
-            <style>
-            #map{
-              height: 400px;
-              width: 100%;
-            }
-            </style>
 
             <script>
               let map
 
-                  // 地図の表示
+                  // 検索結果より地図の表示
                   function initMap() {
                       geocoder = new google.maps.Geocoder()
 
-                      map = new google.maps.Map(document.getElementById("map"), {
-                          center:{lat: 35.68123620000001, lng:139.7671248},
+                      var LatLng ={lat: <%= @activity_point.latitude %>, lng: <%= @activity_point.longitude %>};
+                      map = new google.maps.Map(document.getElementById('map'), {
+                          center: LatLng,
                           zoom: 12,
                       });
 
                   // 活動地点のaddressから緯度経度を取得
                   <% @activity_points.each do |m| %>
                     (function(){
-
                       // 緯度経度を元にピンをさす
                         var marker = new google.maps.Marker({
                             position:{lat: <%= m.latitude %>, lng: <%= m.longitude %>},
@@ -61,7 +54,8 @@
                         });
                       })();
                   <% end %>
-                }
+                  }
+
             </script>
             <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
         </div>
