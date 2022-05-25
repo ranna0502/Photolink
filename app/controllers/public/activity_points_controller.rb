@@ -55,19 +55,12 @@ class Public::ActivityPointsController < ApplicationController
 
   def search
     @user = current_user
-    @activity_point = ActivityPoint.find_by(user_id: @user)
     # 検索オブジェクト
     @search = ActivityPoint.ransack(params[:q])
     # 検索結果
     @activity_points = @search.result(distinct: true).page(params[:page]).per(5)
-    #binding.pry
-  end
-
-  def search_matchers
-    # 検索オブジェクト
-    @search = ActivityPoint.ransack(params[:q])
-    # 検索結果
-    @activity_points_result = @search.result(distinct: true)
+    # 検索結果の最初の１つだけデータ取得
+    @activity_point = @activity_points.first
   end
 
   private
