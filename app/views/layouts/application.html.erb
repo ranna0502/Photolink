@@ -18,7 +18,9 @@
         <main>
           <%= yield %>
         </main>
-      <%= render 'layouts/footer' %>
+      <% unless current_page?(activity_points_path) %>
+        <%= render 'layouts/footer' %>
+      <% end %>
     </div>
   </body>
 </html>

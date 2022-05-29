@@ -72,6 +72,7 @@ gem 'ransack'
 gem 'jp_prefecture'
 gem 'geocoder'
 gem 'line-bot-api'
+gem 'jquery-rails'
 
 gem 'dotenv-rails'
 group :production do

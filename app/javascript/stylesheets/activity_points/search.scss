@@ -33,7 +33,12 @@ $sub-color: #365b6d;
   overflow-y: scroll;
 
   &.search{
-    height: 800px;
+    height: 700px;
+
+    @include display{
+       height: 800px;
+    }
+
   }
 
   &.users_list{
@@ -46,7 +51,7 @@ $sub-color: #365b6d;
 }
 
 
-// --------ユーザーサーチ画面--------------
+// --------ユーザーサーチ結果画面--------------
 
 .table-img{
   width: 150px;
@@ -87,6 +92,27 @@ $sub-color: #365b6d;
 // -----------地図サイズ------------------
 
   #map{
-    height: 400px;
+    height: 300px;
     width: 100%;
   }
+
+
+
+// -----------ランキングスライド------------------
+
+#slideL {
+  z-index:100;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: -350px;
+  width: 400px;
+  height: auto;
+  padding: 0 40px 0 0;
+  background: #999;
+}
+#slideL .slide-inner {
+  overflow: auto;
+  overflow-x: hidden;
+  background: #ddd;
+}
