@@ -84,3 +84,6 @@ class Public::ActivityPointsController < ApplicationController
     end
   end
 end
+
+
+
