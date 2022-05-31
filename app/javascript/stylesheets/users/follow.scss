@@ -1,0 +1,44 @@
+.popup {
+    display: none;
+    height: 100vh;
+    width: 100%;
+    background: black;
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.popup-content{
+    padding: 30px;
+    text-align: center;
+    background: #fff;
+    width: 50%;
+}
+
+.close-button{
+    width: 30%;
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 4px;
+    background: rgb(127 127 127);
+    transition:all .5s ease-in-out;
+
+    &:hover{
+      background: rgb(190 29 29);
+      text-decoration: none;
+    }
+
+}
+
+// ポップアップ時、中央に配置
+
+.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

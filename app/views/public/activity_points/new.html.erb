@@ -5,7 +5,7 @@
       <%= render 'public/users/guide', user: @user, activity_point: @activity_point %>
     </div>
     <div class='col-md-6 offset-1 profile-edit main-content'>
-      <h4 class=" subtitle">TODAY'S SPOT</h4>
+      <h4 class=" subtitle">NEW SPOT</h4>
       <%= form_with model: @activity_point, local:true do |f| %>
         <!--errorsの部分テンプレート引用-->
         <%= render "public/shared/error_messages", resource: @activity_point %>

@@ -1,5 +1,8 @@
-<%= form_for(current_user, url: relationships_path, method: :post, remote: true) do |f| %>
+<%= form_with model: relationship, class: "like-form", local: false do |f| %>
     <!--コントローラーで保持しているidを次のアクションに裏側で渡す-->
-    <%= hidden_field_tag :following_id, @user.id %>
+    <%= hidden_field_tag :following_id, user.id %>
   <%= f.submit "依頼する", class: "button" %>
 <% end %>
+
+
+
