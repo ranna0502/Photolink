@@ -1,8 +1,8 @@
 <div class='container-field'>
   <div class="row">
     <div class='col-12'>
-      <div id='map'></div>
 
+      <div id='map'></div>
       <script>
         let map
 
@@ -45,7 +45,6 @@
           <div class="wrap">
               <div id="tab-contents">
                 <div id="tab1" class="tab">
-                  <p>
                     <%= search_form_for @search do |f| %>
                       <h5 class="col-12 mb-3">ユーザー検索</h5>
 
@@ -70,72 +69,55 @@
                         <%= f.submit '🔍　この条件で検索！', class: 'button ' %>
                       </div>
                     <% end %>
-                  <!--</div>-->
-                </p>
                 </div>
-
                 <div id="tab2" class="tab">
-                  <p>
-                    <div class="jscroll-div search">
-                      <div class='jscroll-container table table-hover table-inverse'>
-                        <% if @activity_points.exists? %>
-                          <% @activity_points.each do |activity_point| %>
-                            <%= link_to matching_user_path(activity_point.user), class: "search-link" do %>
-                              <div class="row SearchUser-box">
-                                  <div class="col-2">
-                                      <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
-                                  </div>
-                                  <div class="col-7 section">
-                                    <p>
-                                        <%= activity_point.user.nickname %>
-
-                                        <!--マッチングしているユーザーのみアイコン表示-->
-                                        <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
-                                          <i class="fas fa-solid fa-hand-holding-heart"></i>
-
-                                        <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
-                                        <% elsif activity_point.user.following?(current_user) %>
-                                          <i class="fas fa-solid fa-hand-holding"></i>
-
-                                        <% else %>
-                                          <!--どちらでもない場合は空白-->
-                                        <% end %></br>
-
-                                    </p>
-                                    <!--<p>-->
-                                    <!--  <span class="pr-3">活動日時：</span>< activity_point.date.strftime('%m月%d日') %>  < activity_point.time.strftime('%H:%M') %></br>-->
-                                    <!--</p>-->
-                                    <!--<p>-->
-                                    <!--  <span class="pr-3">スポット：</span>< activity_point.spot %></br>-->
-                                    <!--</p>-->
-                                    <!--<p>-->
-                                    <!--  <span class="pr-3">活動住所：</span>< activity_point.prefecture %>< activity_point.address %></br>-->
-                                    <!--</p>-->
-                                    <!--<p>-->
-                                    <!--  <span class="pr-5">要望：</span><p>< activity_point.request %></p>-->
-                                    <!--</p>-->
-                                  </div>
-                                  <!--<div class="col-2 my-5">-->
-                                  <!--  < link_to '詳細画面へ', matching_user_path(activity_point.user), class: "header-button search" %>-->
-                                  <!--</div>-->
-                              </div>
-                            <% end %>
-                          <% end %>
-                        <% else %>
-                          <p>検索条件に該当するユーザーはいませんでした</p>
-                        <% end %>
-                      <%= paginate @activity_points %>
-                    </div>
+                  <div class="sort-table">
+                    <div><%=  link_to "全件表示", activity_points_path, class: 'button sort' %></div>
+                    <div><%=  sort_link @search, :date, "日付順", class: 'button sort' %></div>
+                    <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>
                   </div>
-                  </p>
-                </div>
 
+                  <div class="jscroll-div search">
+                    <div class='jscroll-container table table-hover table-inverse'>
+                      <% if @activity_points.exists? %>
+                        <% @activity_points.each do |activity_point| %>
+                          <%= link_to matching_user_path(activity_point.user), class: "search-link" do %>
+                            <div class="row SearchUser-box">
+                                <div class="col-2">
+                                    <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
+                                </div>
+                                <div class="col-7 section">
+                                  <p>
+                                      <%= activity_point.user.nickname %>
+
+                                      <!--マッチングしているユーザーのみアイコン表示-->
+                                      <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
+                                        <i class="fas fa-solid fa-hand-holding-heart"></i>
+
+                                      <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
+                                      <% elsif activity_point.user.following?(current_user) %>
+                                        <i class="fas fa-solid fa-hand-holding"></i>
+
+                                      <% else %>
+                                        <!--どちらでもない場合は空白-->
+                                      <% end %></br>
+
+                                  </p>
+                                </div>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      <% else %>
+                        <p>検索条件に該当するユーザーはいませんでした</p>
+                      <% end %>
+                    <%= paginate @activity_points %>
+                  </div>
+                </div>
+                </div>
                 <div id="tab3" class="tab">
                   <p>TAB3のテキストが入ります。TAB3のテキストが入ります。TAB3のテキストが入ります。</p>
                 </div>
-
                 <div id="tab4" class="tab">
-                  <p>
                     <ul class="nav">
                       <li class="nav__item">
                         <%= link_to  user_path(@user), class: "nav__item-link" do %>
@@ -174,7 +156,6 @@
                         <% end %>
                       </li>
                     </ul>
-                  </p>
                 </div>
             </div>
               <ul id="tab-menu" class="ul">
@@ -189,11 +170,6 @@
        <%= javascript_pack_tag 'slide_menu' %>
 </div>
 
-      <!--<div class="sort-table">-->
-      <!--  <div><%=  link_to "全件表示", activity_points_path, class: 'button sort' %></div>-->
-      <!--  <div><%=  sort_link @search, :date, "日付順", class: 'button sort' %></div>-->
-      <!--  <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>-->
-      <!--</div>-->
 
 
 
