@@ -14,7 +14,9 @@
   <body>
     <div class="footerFixed">
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
-      <%= render "layouts/header" %>
+      <% unless current_page?(activity_points_path) %>
+        <%= render "layouts/header" %>
+      <% end %>
         <main>
           <%= yield %>
         </main>

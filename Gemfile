@@ -62,6 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -71,8 +72,6 @@ gem 'kaminari'
 gem 'ransack'
 gem 'jp_prefecture'
 gem 'geocoder'
-gem 'line-bot-api'
-gem 'jquery-rails'
 
 gem 'dotenv-rails'
 group :production do

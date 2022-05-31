@@ -1,32 +1,6 @@
-<div class="container-field">
-  <div class= "row" >
-    <div class="col-3 guide-content left">
-      <%= search_form_for @search do |f| %>
-      <div class="row search-box">
-        <h5 class="col-12 mb-3">検索しましょう</h5>
-
-        <div class="col-12 mb-1">
-          <%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
-        </div>
-        <div class="col-12 mb-1">
-          <%= f.search_field :spot_or_address_cont, placeholder: "住所またはスポット名", class: 'form-control' %>
-        </div>
-        <div class="col-7   mb-1">
-          <%= f.date_field :date_cont, class: 'form-control' %>
-        </div>
-        <div class="col-7  mb-3">
-          <%= f.time_field :time_gteq, include_blank: true, class: 'form-control' %>
-        </div>
-        <div class="col-12 mb-3">
-          <%= f.radio_button :activity_status_eq, '', {:checked => true} %>指定なし</br>
-          <%= f.radio_button :activity_status_eq, 0 %>カメラマン</br>
-          <%= f.radio_button :activity_status_eq, 1 %>モデル
-        </div>
-        <div class="col-12 mb-3">
-          <%= f.submit '🔍　この条件で検索！', class: 'button ' %>
-        </div>
-      <% end %>
-
+<div class='container-field'>
+  <div class="row">
+    <div class='col-12'>
       <div id='map'></div>
 
       <script>
@@ -36,88 +10,190 @@
             function initMap() {
                 geocoder = new google.maps.Geocoder()
 
+            <% if @activity_points.exists? %>
                 var LatLng ={lat: <%= @activity_point.latitude %>, lng: <%= @activity_point.longitude %>};
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: LatLng,
-                    zoom: 12,
+                    zoom: 14,
                 });
 
             // 活動地点のaddressから緯度経度を取得
-            <% @activity_points.each do |m| %>
-              (function(){
-                // 緯度経度を元にピンをさす
-                  var marker = new google.maps.Marker({
-                      position:{lat: <%= m.latitude %>, lng: <%= m.longitude %>},
-                      map: map
-                  });
-                })();
+              <% @activity_points.each do |m| %>
+                (function(){
+                  // 緯度経度を元にピンをさす
+                    var marker = new google.maps.Marker({
+                        position:{lat: <%= m.latitude %>, lng: <%= m.longitude %>},
+                        map: map
+                    });
+                  })();
+              <% end %>
+            <% else %>
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: {lat: 35.68123620000001, lng:139.7671248},
+                    zoom: 14,
+                });
             <% end %>
             }
 
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
-  </div>
-</div>
+    </div>
 
+      <div id="btn-menu" class="off">MENU</div>
+      <div id="slideL" class="SlideOut">
+        <div class="slide-inner">
+          <div class="wrap">
+              <div id="tab-contents">
+                <div id="tab1" class="tab">
+                  <p>
+                    <%= search_form_for @search do |f| %>
+                      <h5 class="col-12 mb-3">ユーザー検索</h5>
 
-
-    <div class="col-8 main-content fixed">
-      <div class="sort-table">
-        <div><%=  link_to "全件表示", activity_points_path, class: 'button sort' %></div>
-        <div><%=  sort_link @search, :date, "日付順", class: 'button sort' %></div>
-        <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>
-      </div>
-        <div class="jscroll-div search">
-          <div class='jscroll-container table table-hover table-inverse'>
-                <% @activity_points.each do |activity_point| %>
-                <div class="row searchuser-box">
-                    <div class="col-2 ml-4 my-5">
-                      <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
-                    </div>
-                    <div class="col-7 my-5  section">
-                      <p>
-                        <strong>
-                          <%= activity_point.user.nickname %>
-
-                          <!--マッチングしているユーザーのみアイコン表示-->
-                          <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
-                            <i class="fas fa-solid fa-hand-holding-heart"></i>
-                            マッチング済み
-                          <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
-                          <% elsif activity_point.user.following?(current_user) %>
-                            <i class="fas fa-solid fa-hand-holding"></i>
-                            フォロー依頼が届いています
-                          <% else %>
-                            <!--どちらでもない場合は空白-->
-                          <% end %></br>
-
-                        </strong>
-                      </p>
-                      <p>
-                        <span class="pr-3">活動日時：</span><%= activity_point.date.strftime('%m月%d日') %>  <%= activity_point.time.strftime('%H:%M') %></br>
-                      </p>
-                      <p>
-                        <span class="pr-3">スポット：</span><%= activity_point.spot %></br>
-                      </p>
-                      <p>
-                        <span class="pr-3">活動住所：</span><%= activity_point.prefecture %><%= activity_point.address %></br>
-                      </p>
-                      <p>
-                        <span class="pr-5">要望：</span><p><%= activity_point.request %></p>
-                      </p>
-                    </div>
-                    <div class="col-2 my-5">
-                      <%= link_to '詳細画面へ', matching_user_path(activity_point.user), class: "header-button search" %>
-                    </div>
+                      <div class="col-12 mb-1">
+                        <%= f.collection_select :prefecture_eq, JpPrefecture::Prefecture.all, :name, :name, { include_blank: '都道府県' }, { class: 'custom-select' } %>
+                      </div>
+                      <div class="col-12 mb-1">
+                        <%= f.search_field :spot_or_address_cont, placeholder: "住所またはスポット名", class: 'form-control' %>
+                      </div>
+                      <div class="col-7   mb-1">
+                        <%= f.date_field :date_cont, class: 'form-control' %>
+                      </div>
+                      <div class="col-7  mb-3">
+                        <%= f.time_field :time_gteq, include_blank: true, class: 'form-control' %>
+                      </div>
+                      <div class="col-12 mb-3">
+                        <%= f.radio_button :activity_status_eq, '', {:checked => true} %>指定なし</br>
+                        <%= f.radio_button :activity_status_eq, 0 %>カメラマン</br>
+                        <%= f.radio_button :activity_status_eq, 1 %>モデル
+                      </div>
+                      <div class="col-12 mb-3">
+                        <%= f.submit '🔍　この条件で検索！', class: 'button ' %>
+                      </div>
+                    <% end %>
+                  <!--</div>-->
+                </p>
                 </div>
-                <% end %>
-          <%= paginate @activity_points %>
+
+                <div id="tab2" class="tab">
+                  <p>
+                    <div class="jscroll-div search">
+                      <div class='jscroll-container table table-hover table-inverse'>
+                        <% if @activity_points.exists? %>
+                          <% @activity_points.each do |activity_point| %>
+                            <%= link_to matching_user_path(activity_point.user), class: "search-link" do %>
+                              <div class="row SearchUser-box">
+                                  <div class="col-2">
+                                      <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
+                                  </div>
+                                  <div class="col-7 section">
+                                    <p>
+                                        <%= activity_point.user.nickname %>
+
+                                        <!--マッチングしているユーザーのみアイコン表示-->
+                                        <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
+                                          <i class="fas fa-solid fa-hand-holding-heart"></i>
+
+                                        <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
+                                        <% elsif activity_point.user.following?(current_user) %>
+                                          <i class="fas fa-solid fa-hand-holding"></i>
+
+                                        <% else %>
+                                          <!--どちらでもない場合は空白-->
+                                        <% end %></br>
+
+                                    </p>
+                                    <!--<p>-->
+                                    <!--  <span class="pr-3">活動日時：</span>< activity_point.date.strftime('%m月%d日') %>  < activity_point.time.strftime('%H:%M') %></br>-->
+                                    <!--</p>-->
+                                    <!--<p>-->
+                                    <!--  <span class="pr-3">スポット：</span>< activity_point.spot %></br>-->
+                                    <!--</p>-->
+                                    <!--<p>-->
+                                    <!--  <span class="pr-3">活動住所：</span>< activity_point.prefecture %>< activity_point.address %></br>-->
+                                    <!--</p>-->
+                                    <!--<p>-->
+                                    <!--  <span class="pr-5">要望：</span><p>< activity_point.request %></p>-->
+                                    <!--</p>-->
+                                  </div>
+                                  <!--<div class="col-2 my-5">-->
+                                  <!--  < link_to '詳細画面へ', matching_user_path(activity_point.user), class: "header-button search" %>-->
+                                  <!--</div>-->
+                              </div>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <p>検索条件に該当するユーザーはいませんでした</p>
+                        <% end %>
+                      <%= paginate @activity_points %>
+                    </div>
+                  </div>
+                  </p>
+                </div>
+
+                <div id="tab3" class="tab">
+                  <p>TAB3のテキストが入ります。TAB3のテキストが入ります。TAB3のテキストが入ります。</p>
+                </div>
+
+                <div id="tab4" class="tab">
+                  <p>
+                    <ul class="nav">
+                      <li class="nav__item">
+                        <%= link_to  user_path(@user), class: "nav__item-link" do %>
+                          <i class="fas fa-solid fa-user nav__item-icon"></i>
+                          <span class="nav__item-text">アカウント情報</span>
+                        <% end %>
+                      </li>
+                      <li class="nav__item">
+                        <%= link_to  notifications_path, class: "nav__item-link " do %>
+                          <% if unchecked_notifications.any? %>
+                              <i class="far fa-bell nav__item-icon", style="font-size: 1.5em;" ></i>
+                              <span class="nav__item-text">通知</span>
+                              <i class="fas fa-circle n-circle "></i>
+                          <% else %>
+                            <i class="far fa-bell nav__item-icon", style="font-size: 1.5em;" ></i>
+                            <span class="nav__item-text">通知</span>
+                          <% end %>
+                        <% end %>
+                      </li>
+                      <li class="nav__item">
+                        <%= link_to  users_matchings_path, class: "nav__item-link" do %>
+                          <i class="fas fa-solid fa-envelope nav__item-icon"></i>
+                          <span class="nav__item-text">メッセージ</span>
+                        <% end %>
+                      </li>
+                      <li class="nav__item">
+                        <%= link_to new_activity_point_path, class: "nav__item-link" do %>
+                          <i class="fas fa-solid fa-camera nav__item-icon"></i>
+                          <span class="nav__item-text">活動地点の登録</span>
+                        <% end %>
+                      </li>
+                      <li class="nav__item">
+                        <%= link_to  users_unsubscribe_path, class: "nav__item-link" do %>
+                          <i class="fas fa-solid fa-reply nav__item-icon"></i>
+                          <span class="nav__item-text">退会</span>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </p>
+                </div>
+            </div>
+              <ul id="tab-menu" class="ul">
+                <li><a href="#tab1" class="active">検索</a></li>
+                <li><a href="#tab2" class="">ユーザー</a></li>
+                <li><a href="#tab3" class="">👑</a></li>
+                <li><a href="#tab4" class="">🏠</a></li>
+              </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+       <%= javascript_pack_tag 'slide_menu' %>
 </div>
 
+      <!--<div class="sort-table">-->
+      <!--  <div><%=  link_to "全件表示", activity_points_path, class: 'button sort' %></div>-->
+      <!--  <div><%=  sort_link @search, :date, "日付順", class: 'button sort' %></div>-->
+      <!--  <div><%=  sort_link @search, :time, "時間順", class: 'button sort' %></div>-->
+      <!--</div>-->
 
 
 
@@ -125,9 +201,4 @@
 
 
 
-<!--スライドメニュー-->
-<!--<div id="slideL" class="off">-->
-<!--    <div class="slide-inner">-->
-<!--    </div>-->
-<!--</div>-->
-<!--< javascript_pack_tag 'slide_menu' %>-->
+
