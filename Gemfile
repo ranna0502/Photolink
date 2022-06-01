@@ -72,6 +72,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'jp_prefecture'
 gem 'geocoder'
+gem 'whenever', require: false
 
 gem 'dotenv-rails'
 group :production do

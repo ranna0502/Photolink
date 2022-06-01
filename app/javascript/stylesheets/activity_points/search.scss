@@ -29,7 +29,7 @@ $sub-color: #365b6d;
 
 .jscroll-div{
   width: 100%;
-  height: 480px;
+  height: 450px;
   overflow-y: scroll;
 
   &.search{
@@ -259,3 +259,35 @@ $sub-color: #365b6d;
   padding: 30px;
 }
 
+
+
+.ranks-container {
+  & strong{
+    font-size: 20px;
+    color: darkcyan;
+  }
+}
+
+.rank-box {
+    width: 90%;
+    padding: 20px;
+    margin: 20px;
+    background-color: darkorange;
+    color: white;
+    border: solid 1px #ff8c00;
+    border-radius: 3px;
+    box-shadow: 1px 4px 10px rgb(0 0 0 / 22%);
+
+    animation: SlideIn 1.0s ease-out forwards;
+
+}
+      @keyframes SlideIn {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
