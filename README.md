@@ -32,6 +32,33 @@
 ### 主な利用シーン
 ・観光スポットでの写真撮影時</br>
 
+## 実装機能一覧  
+    | 機能 | ライブラリ/備考 |
+-----------| ------------ | -----------  
+1 | ユーザー（ログイン機能) | devise  
+2 | ゲストログイン機能 |   
+3 | SNSログイン機能 | devise/omniauth(FaceBook API/Twitter API)    
+4 | マイページ機能 |   
+5 | 活動予定拠点投稿 | enum-help,jp_prefecture    
+6 | 検索機能 | ransack    
+7 | ソート機能 | ransack   
+8 | ランキング機能 |    
+9 | mapマーカー表示機能 | API(Google Maps JavaScript API,Geocoding API)       
+10 | マッチング機能 | フォロー機能にポップアップを追加    
+11 | 通知機能 |   
+12 | DM機能 | ActionCable    
+13 | 無限スクロール機能 | jScroll,kaminari     
+15 | 定時処理（バッチ処理) | whenever  
+16 | テストデータの追加 | seed.rb  
+17 | rails/devise日本語化 | rails-i18n
+18 | コード解析 | RuboCop  
+19 | 結合テスト（投稿処理） | RSpec    
+20 | 自動デプロイ | Github Actions(CI/CDツール)  
+21 | https設定 | Certbot  
+22 | ドメイン指定 | Route53    
+
+
+
 ## 設計書
 ### テーブル定義書
 https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM1KU/edit#gid=2145917830
