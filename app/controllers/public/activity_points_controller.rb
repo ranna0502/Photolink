@@ -55,10 +55,12 @@ class Public::ActivityPointsController < ApplicationController
 
   def search
     @user = current_user
+    # 人気活動拠点を抽出
+    @activity_point_ranks = ActivityPoint.group(:spot).order('count_spot DESC').count(:spot)
     # 検索オブジェクト
     @search = ActivityPoint.ransack(params[:q])
     # 検索結果
-    @activity_points = @search.result(distinct: true).page(params[:page]).per(5)
+    @activity_points = @search.result(distinct: true).page(params[:page]).per(15)
     # 検索結果の最初の１つだけデータ取得
     @activity_point = @activity_points.first
   end

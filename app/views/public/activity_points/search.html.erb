@@ -14,7 +14,7 @@
                 var LatLng ={lat: <%= @activity_point.latitude %>, lng: <%= @activity_point.longitude %>};
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: LatLng,
-                    zoom: 14,
+                    zoom: 13,
                 });
 
             // 活動地点のaddressから緯度経度を取得
@@ -30,7 +30,7 @@
             <% else %>
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 35.68123620000001, lng:139.7671248},
-                    zoom: 14,
+                    zoom: 13,
                 });
             <% end %>
             }
@@ -115,7 +115,34 @@
                 </div>
                 </div>
                 <div id="tab3" class="tab">
-                  <p>TAB3のテキストが入ります。TAB3のテキストが入ります。TAB3のテキストが入ります。</p>
+                  <div class="ranks-container">
+                    <strong>人気活動SPOT BEST5 👑</strong>
+                    <p> <%= Date.today %>現在</p>
+                    <!--note[0]がスポット名、note[1]が投稿数-->
+                    <% lastSpotCount = 0 %>
+                    <% j = 1 %>
+                    <%  @activity_point_ranks.each.with_index(1) do |note,i| %>
+                      <% if i <= 5 %>
+                        <% if i == 1 %>
+                          <% lastSpotCount = note[1] %>
+                        <% end %>
+                        <% if note[1] != lastSpotCount %>
+                          <% j = i %>
+                          <div class="rank-box">
+                            第<%= j %>位
+                            <%= note[0] %>
+                          </div>
+                          <% lastSpotCount = note[1] %>
+                        <% else %>
+                          <% lastSpotCount = note[1] %>
+                          <div class="rank-box">
+                            第<%= j %>位
+                            <%= note[0] %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
                 <div id="tab4" class="tab">
                     <ul class="nav">

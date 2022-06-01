@@ -46,7 +46,7 @@
         <div class="profile-top">
           <div class="profile-box">
             <p class="profile-title">活動日時</p>
-            <p class="profile-body"><%= @activity_point.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+            <p class="profile-body"><%= l @activity_point.date, format: :short %>  <%= l @activity_point.time, format: :short %></p>
           </div>
           <div class="profile-box">
               <p class="profile-title">人数</p>
