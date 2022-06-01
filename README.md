@@ -67,12 +67,13 @@ https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM
 https://docs.google.com/spreadsheets/d/1OARFfdhY1hkqcnZ23-DYdgLzRSGo1PPFX_vMndFzvt4/edit#gid=2133469642
 
 ### ER図
-![image](https://user-images.githubusercontent.com/80334879/165627532-73f06ca2-108e-4cf9-a406-bfff98b293f5.png)
+![ER図_Photolink-ER図 drawio](https://user-images.githubusercontent.com/80334879/171387613-f34b1ffe-60d4-46f6-ab42-3c820a0fed3e.png)
+
 
 
 
 ## 開発環境
-- OS：Linux(CentOS)
+- OS：Linux(Amazon Linux2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
@@ -84,3 +85,11 @@ https://www.canva.com/
 
 ### photo-ac(フリー素材写真)
 https://www.photo-ac.com/
+
+## 使用方法  
+ユーザー  
+新規会員登録、ゲストログイン、SNSログインをご利用ください。  
+
+マッチング候補のユーザーです。データの確認などにご使用ください。  
+・アカウント名:はなちゃん  
+・ログインパスワード:111111  
