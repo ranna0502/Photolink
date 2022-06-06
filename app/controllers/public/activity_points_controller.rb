@@ -61,8 +61,13 @@ class Public::ActivityPointsController < ApplicationController
     @search = ActivityPoint.ransack(params[:q])
     # 検索結果
     @activity_points = @search.result(distinct: true).page(params[:page]).per(15)
-    # 検索結果の最初の１つだけデータ取得
+    # 検索結果の最初の１つだけデータ取得,地図画面表示の時に使用
     @activity_point = @activity_points.first
+  end
+
+  def search_spot
+    # マーカーからスポットごとのユーザー情報を取得
+    @spot_users = ActivityPoint.where(spot: params[:q]).page(params[:page]).per(15)
   end
 
   private

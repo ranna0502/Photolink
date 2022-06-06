@@ -6,6 +6,7 @@
       <script>
         let map
 
+
             // 検索結果より地図の表示
             function initMap() {
                 geocoder = new google.maps.Geocoder()
@@ -20,12 +21,23 @@
             // 活動地点のaddressから緯度経度を取得
               <% @activity_points.each do |m| %>
                 (function(){
-                  // 緯度経度を元にピンをさす
+                  // 緯度経度を元にマーカー表示
                     var marker = new google.maps.Marker({
                         position:{lat: <%= m.latitude %>, lng: <%= m.longitude %>},
                         map: map
                     });
+                  // 吹き出しでスポット名表示、ユーザー一覧表示リンク
+                    var infowindow = new google.maps.InfoWindow({
+                        position: {lat: <%= m.latitude %>, lng: <%= m.longitude %>},
+                        content: "<a class='spot', href='<%= activity_points_spot_url(q: m.spot) %>' target='_blank'><%= m.spot %></a>"
+                    });
+                  // クリックしたときに情報ウィンドウを表示
+                    marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                    });
+
                   })();
+
               <% end %>
             <% else %>
                 map = new google.maps.Map(document.getElementById('map'), {
@@ -37,6 +49,7 @@
 
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap" async defer></script>
+
     </div>
 
       <div id="btn-menu" class="off">MENU</div>
@@ -194,7 +207,7 @@
           </div>
         </div>
       </div>
-       <%= javascript_pack_tag 'slide_menu' %>
+      <%= javascript_pack_tag 'slide_menu' %>
 </div>
 
 
