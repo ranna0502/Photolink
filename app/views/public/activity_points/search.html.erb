@@ -26,7 +26,7 @@
                         position:{lat: <%= m.latitude %>, lng: <%= m.longitude %>},
                         map: map
                     });
-                  // 吹き出しでスポット名表示、ユーザー一覧表示リンク
+                  // 吹き出しでスポット名表示、ユーザーの一覧表示リンク
                     var infowindow = new google.maps.InfoWindow({
                         position: {lat: <%= m.latitude %>, lng: <%= m.longitude %>},
                         content: "<a class='spot', href='<%= activity_points_spot_url(q: m.spot) %>' target='_blank'><%= m.spot %></a>"
