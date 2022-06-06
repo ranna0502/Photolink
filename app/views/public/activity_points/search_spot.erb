@@ -1,0 +1,42 @@
+<div class='container'>
+  <div class="row">
+    <div class='col-10 offset-1'>
+      <div class="jscroll-div search">
+        <div class='jscroll-container table table-hover table-inverse'>
+          <% if @spot_users.exists? %>
+            <% @spot_users.each do |activity_point| %>
+              <%= link_to matching_user_path(activity_point.user), class: "search-link" do %>
+                <div class="row SearchUser-box">
+                    <div class="col-2">
+                        <%= image_tag activity_point.user.get_profile_image, class: "table-img" %>
+                    </div>
+                    <div class="col-7 section">
+                      <p>
+                          <%= activity_point.user.nickname %>
+
+                          <!--マッチングしているユーザーのみアイコン表示-->
+                          <% if activity_point.user.following?(current_user) && activity_point.user.follower?(current_user) %>
+                            <i class="fas fa-solid fa-hand-holding-heart"></i>
+
+                          <!--ログインユーザーに依頼を送ったユーザーのみアイコン表示-->
+                          <% elsif activity_point.user.following?(current_user) %>
+                            <i class="fas fa-solid fa-hand-holding"></i>
+
+                          <% else %>
+                            <!--どちらでもない場合は空白-->
+                          <% end %></br>
+
+                      </p>
+                    </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <p>検索条件に該当するユーザーはいませんでした</p>
+          <% end %>
+        <%= paginate @spot_users %>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

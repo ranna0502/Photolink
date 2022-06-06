@@ -25,5 +25,5 @@ ActiveStorage.start()
 import "./slide_menu"
 import "./jscroll"
 import "./matching_effect"
-
+import "./search_users"
 
