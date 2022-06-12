@@ -2,7 +2,7 @@ class Public::ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    current_user_chat_rooms = ChatRoomUser.where(user_id: current_user.id).map(&:chat_room) # 中間テーブルから自分のレコードを取得
+    current_user_chat_rooms = ChatRoomUser.where(user_id: current_user.id).map(&:chat_room) # 中間テーブルから自分がいるチャットルームを取得
     chat_room = ChatRoomUser.where(chat_room: current_user_chat_rooms, user_id: params[:user_id]).map(&:chat_room).first # 自分がいるかつ、マッチングしたユーザーのルームを取得
     if chat_room.blank?
       chat_room = ChatRoom.create

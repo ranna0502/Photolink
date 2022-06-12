@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
   has_many :activity_points
+  #class_nameで参照先モデルのクラス名を明示
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
   has_many :following, through: :following_relationships
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
@@ -14,7 +15,9 @@ class User < ApplicationRecord
   has_many :chat_room_users
   has_many :chat_rooms, through: :chat_room_users
   has_many :chat_messages
+  #自分からの通知
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  #相手からの通知
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   validates :nickname, presence: true
@@ -84,6 +87,7 @@ class User < ApplicationRecord
 
   # フォロー通知を作成するメソッド
   def create_notification_follow!(current_user)
+    # 通知を送信したIDがログインユーザーかつ通知を受信したIDかつactionがフォローのデータを取得
     temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, id, 'follow'])
     # 連続でフォローボタンを押しても１回目だけを通知する
     if temp.blank?
