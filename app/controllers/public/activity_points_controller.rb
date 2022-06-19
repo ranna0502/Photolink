@@ -1,5 +1,4 @@
 class Public::ActivityPointsController < ApplicationController
-  before_action :set_activity_point, only: [:user_record]
 
   def new
     @activity_point = ActivityPoint.new
@@ -49,7 +48,7 @@ class Public::ActivityPointsController < ApplicationController
         render 'new', alert: "活動地点の保存に失敗しました"
       end
     else
-      redirect_to new_activity_point_path, notice: "活動登録は１回までです。地点を変更する場合は編集より行ってください"
+      redirect_to new_activity_point_path, notice: "活動登録は１回までです。変更する場合は編集より行ってください。"
     end
   end
 
@@ -74,13 +73,6 @@ class Public::ActivityPointsController < ApplicationController
 
   def activity_point_params
     params.require(:activity_point).permit(:date, :time, :person, :spot, :prefecture, :address, :request, :activity_status, :latitude, :longitude)
-  end
-
-  # ログインユーザーがデータを登録しているか確認
-  def set_activity_point
-    unless ActivityPoint.exists?(user_id: current_user.id)
-      redirect_to new_activity_point_path, notice: "まずは活動地点を登録してみましょう！"
-    end
   end
 
   # URLを直接入力されても遷移しない

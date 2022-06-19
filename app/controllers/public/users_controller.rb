@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
+  # editの前にgestuserか確認する
   before_action :ensure_guest_user, only: [:edit]
+  # editの前にログインユーザーか確認する
   before_action :other_user, only: [:edit]
 
   def show
@@ -56,6 +58,7 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  # ログインユーザーと違う場合、編集画面へ遷移しない
   def other_user
     @user = User.find(params[:id])
     unless @user.id == current_user.id
