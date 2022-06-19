@@ -33,6 +33,7 @@ class User < ApplicationRecord
   end
 
   # OAuth認証
+  # 認証後に得られたユーザーのメールアドレスをもとにユーザー情報の取得または登録を行う
    class << self
     def find_or_create_for_oauth(auth)
       find_or_create_by!(email: User.dummy_email(auth)) do |user|
@@ -46,6 +47,7 @@ class User < ApplicationRecord
       end
     end
 
+    # セッションに格納されたユーザー情報を補完する
     def new_with_session(params, session)
       if user_attributes = session['devise.user_attributes']
         new(user_attributes) { |user| user.attributes = params }
@@ -101,11 +103,13 @@ class User < ApplicationRecord
 
 
   private
-
+    
+    # OAuth認証、Emailを作る
     def self.dummy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
     end
 
+    # Oauth認証、nicknameを作る
     def self.rondom_name
       "#{((0..9).to_a + ("a".."z").to_a).sample(10).join}"
     end

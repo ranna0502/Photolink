@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe'
     patch 'users/withdraw' => 'users#withdraw'
     resources "users", path: 'users/my_page', only: [:show, :edit, :update]
+    # menberはユーザーidが含まれているURLを扱える
     resources "users" do
       member do
         get :matching
@@ -33,6 +34,7 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create]
 
+    # ActionCable::Server::Baseのインスタンスを返す
     mount ActionCable.server => '/cable'
     root to: "homes#top"
     get "about" => "homes#about", as: "about"

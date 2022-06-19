@@ -28,6 +28,7 @@ class Public::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
 
+# 認証から取得されたユーザーが登録済みであればfind結果を、未登録であれば新規作成したユーザーのインスタンスを
   def callback
     @user = User.find_or_create_for_oauth(request.env['omniauth.auth'])
 
