@@ -1,4 +1,6 @@
 class Public::ActivityPointsController < ApplicationController
+  # 活動地点登録を制限する
+  before_action :activity_point_count, only: [:new]
 
   def new
     @activity_point = ActivityPoint.new
@@ -39,17 +41,6 @@ class Public::ActivityPointsController < ApplicationController
   def create
     @activity_point = ActivityPoint.new(activity_point_params)
     @activity_point.user_id = current_user.id
-    activity_point_count = ActivityPoint.where(user_id: current_user.id).count # 投稿数をカウント
-    if activity_point_count < 1
-      if @activity_point.save
-        redirect_to user_path(current_user), notice: "活動登録しました"
-      else
-        @user = current_user
-        render 'new', alert: "活動地点の保存に失敗しました"
-      end
-    else
-      redirect_to new_activity_point_path, notice: "活動登録は１回までです。変更する場合は編集より行ってください。"
-    end
   end
 
   def search
@@ -75,13 +66,14 @@ class Public::ActivityPointsController < ApplicationController
     params.require(:activity_point).permit(:date, :time, :person, :spot, :prefecture, :address, :request, :activity_status, :latitude, :longitude)
   end
 
-  # URLを直接入力されても遷移しない
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.nickname == "guestuser"
-      redirect_to user_path(current_user), notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+# 活動地点登録を１回しかできないように制限するメソッド
+  def activity_point_count
+    activity_point_count = ActivityPoint.where(user_id: current_user.id).count # 投稿数をカウント
+    if activity_point_count >= 1
+      redirect_to user_path(current_user), notice: "活動登録は１回までです。変更する場合は編集より行ってください。"
     end
   end
+
 end
 
 
