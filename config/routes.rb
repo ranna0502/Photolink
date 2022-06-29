@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   # エンドユーザー用
   # URL /users/sign_in ...
+  # passwordsコントローラーを生成しない
   devise_for :users, skip: [:passwords], controllers: {
     omniauth_callbacks: 'public/omniauth_callbacks',
     registrations: "public/registrations",
     sessions: 'public/sessions',
   }
 
+# devise_scope→新しくdeviseにルーティングを追加する時に使用
+# ゲストログイン
   devise_scope :user do
     post 'public/users/guest_sign_in', to: 'public/users/sessions#guest_sign_in'
   end
