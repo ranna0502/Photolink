@@ -134,14 +134,21 @@
                     <strong>人気活動SPOT BEST5 <i class="fas fa-regular fa-crown"></i></strong>
                     <p> <%= Date.today %>現在</p>
                     <!--note[0]がスポット名、note[1]が投稿数-->
+                    <!--投稿数を管理する変数-->
                     <% lastSpotCount = 0 %>
+                    <!--ランキング変数-->
                     <% j = 1 %>
+                    <!--with_index配列の１つめを１から表示-->
                     <%  @activity_point_ranks.each.with_index(1) do |note,i| %>
+                    <!--５位まで繰り返す-->
                       <% if i <= 5 %>
+                      <!--LastSpotCountに初めの投稿数を代入する-->
                         <% if i == 1 %>
                           <% lastSpotCount = note[1] %>
                         <% end %>
+                        <!--変数i(投稿数)とLastSpotCountが等しくない場合-->
                         <% if note[1] != lastSpotCount %>
+                        <!--ランキングを更新する-->
                           <% j = i %>
                           <div class="rank-box">
                             第<%= j %>位
@@ -149,6 +156,7 @@
                           </div>
                           <% lastSpotCount = note[1] %>
                         <% else %>
+                        <!--等しい場合は同率として表示する-->
                           <% lastSpotCount = note[1] %>
                           <div class="rank-box">
                             第<%= j %>位

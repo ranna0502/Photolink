@@ -2,9 +2,18 @@
 // ブレイクポイント
 $mb1: 1441px;
 $mb2: 2560px;
+$mb3: 425px;
+$mb4: 1439px;
+
 // @media 拡張ディスプレイ
 @mixin display{
   @media screen and (min-width: $mb1) and (max-width: $mb2) {
+    @content;
+  }
+}
+
+@mixin small_display{
+  @media screen and (min-width: $mb3) and (max-width: $mb4) {
     @content;
   }
 }
@@ -27,22 +36,49 @@ $mb2: 2560px;
   z-index: 10;
   background-color: #aacfd7;
 
-  & .background-box1{
+    @include small_display{
+    height: 0px;
+    margin-top: 0px;
+    position: static;
+    z-index: 0;
+    background-color: none;
+  }
+}
+
+
+  .background-box1{
       height: 550px;
       position: absolute;
       left: -50px;
       top: 50px;
       z-index: 40;
+
+      @include small_display{
+        width: 100%;
+        height: 400px;
+        margin: 10px 10px 10px 50px;
+        position: static;
+        z-index: 0;
+      }
+
   }
 
-  & .background-box2{
+  .background-box2{
       height: 550px;
       position: absolute;
       left: 250px;
       top: 100px;
       z-index: 30;
+
+      @include small_display{
+      width: 100%;
+      height: 400px;
+      margin: 10px 10px 10px 50px;
+      position: static;
+      z-index: 0;
+    }
   }
-}
+
 
 
 
@@ -57,6 +93,10 @@ $mb2: 2560px;
       @include display{
         padding-left: 150px;
       }
+
+      @include small_display{
+        padding-left: 0px;
+      }
   }
 
   & .start-button-box{
@@ -66,6 +106,11 @@ $mb2: 2560px;
       @include display{
         padding-left: 150px;
       }
+
+      @include small_display{
+        padding-left: 100px;
+      }
+
     }
   }
 
