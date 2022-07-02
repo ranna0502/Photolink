@@ -67,7 +67,7 @@ https://docs.google.com/spreadsheets/d/1wjpJDVUP5mBLz-5Sm6fMw-g88PFann56JHCETnJM
 https://docs.google.com/spreadsheets/d/1OARFfdhY1hkqcnZ23-DYdgLzRSGo1PPFX_vMndFzvt4/edit#gid=2133469642
 
 ### ER図
-![ER図_Photolink-ER図](https://user-images.githubusercontent.com/80334879/176444772-2c57a1f2-4e49-4768-966d-40f446591ac8.jpg)
+![ER図_Photolink-ER図 (1)](https://user-images.githubusercontent.com/80334879/176990190-6a4cd03b-3bba-4042-b793-e39573121b0b.jpg)
 
 ### インフラ構成  
 ![PFサーバー構成 drawio](https://user-images.githubusercontent.com/80334879/173719854-53c3c1bb-5e72-4fc1-ba76-480f3a831e4f.png)
